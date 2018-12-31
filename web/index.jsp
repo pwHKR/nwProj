@@ -9,7 +9,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Login Page Page</title>
+  <title>Login Page</title>
 </head>
 <body>
 <form action="Web.MVC.Controller.Servlet.LoginServlet" method="GET">

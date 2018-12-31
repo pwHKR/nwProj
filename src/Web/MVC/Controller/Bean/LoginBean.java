@@ -11,17 +11,14 @@ public class LoginBean {
 
     public LoginBean() {
 
-
     }
 
+    public boolean validate(String userName,String password){
 
-    public boolean validateLogin(String userName,String password){
+    ManageAccount manageAccount = new ManageAccount();
 
-
-
-
-        return false;
-    }
+        return manageAccount.validatePassword(userName,password);
+}
 
     public void test(){
 

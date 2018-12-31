@@ -35,10 +35,11 @@ public class LoginServlet extends HttpServlet {
 
 
 
-        LoginBean loginBean = new LoginBean();
+      boolean isValidate = false;
 
 
-                loginBean.test();
+
+
 
         //
 
@@ -49,42 +50,25 @@ public class LoginServlet extends HttpServlet {
 
 
 
+        LoginBean loginBean = new LoginBean();
 
-        String responseContent = "";
+        isValidate = loginBean.validate(userName,password);
 
-        String errmsg = "";
-        int err = 0;
-        /*
 
-        try {
-            String queueMessage = userName + "*" + password + "*" + customer.getName()
-                    + "*" + customer.getEmailAddress() +  "*" + customer.getCc()
-                    + "*" + film.getTitle() + "*" + film.getRentalDuration();
-            sendMessage(queueMessage);
-        }
-        catch (Exception e) {
-            errmsg = e.getMessage();
-            //System.err.println("*****RegServlet: Registration NOT Successful. Error in Sending Message: " + errmsg);
-            err = 1;
-        }
 
-        if (err == 0) {
-            responseContent = getRegDetails(userName) + getRegDetails(password);
-            responseContent = userName + "*" + password + "*" + customer.getName()
-                    + "*" + customer.getEmailAddress() +  "*" + customer.getCc()
-                    + "*" + film.getTitle() + "*" + film.getRentalDuration();
-        }
 
-        */
 
-        if(!userName.isEmpty() && password.length() >= 1 && password.length() <= 10){
+
+
+
+        if(isValidate){
 
 
 
 
            // boolean isLoginValid = manageAccount.validatePassword(userName,password);
 
-            sendMessage(userName+ " accsesed login");
+            sendMessage(userName+ " accessed login");
 
 
 
@@ -95,20 +79,32 @@ public class LoginServlet extends HttpServlet {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<title>Servlet RegServlet</title>");
+                out.println("<title>Servlet LoginServlet</title>");
                 out.println("</head>");
                 out.println("<body>");
-                if (err == 0) {
-                    out.println("<h3>Registration Request by </h3> <h2>" + userName + "(" + password + ")</h2>");
-                    out.println("<br><br> Courses applied for: [<b>" + userName + "], [" + password + "]</b><br><br>");
-                    out.println(responseContent);
+
+
+                    out.println("<h3>Welcome to the social network </h3> <h2>" + userName+"</h2>");
+
+
+
+
                 }
-                else {
-                    out.println("<h2>Registration Request Failed! </h2> <h3>Reason:</h3> <br><br>" + errmsg);
-                }
-                out.println("</body>");
-                out.println("</html>");
-            }
+
+
+        }
+
+        else{
+
+            sendMessage(userName+ " failed to login\npassword used: "+password);
+
+
+
+            response.sendRedirect("loginFailed.jsp");
+
+
+
+
 
         }
     }
@@ -124,7 +120,7 @@ public class LoginServlet extends HttpServlet {
             MessageProducer messageProducer = session.createProducer(queue);
             TextMessage JMSmessage = session.createTextMessage();
             JMSmessage.setText(message);
-            System.out.println( "***** RegServlet: Sent the message to YourQueue:"+ JMSmessage.getText());
+            System.out.println( "***** LoginServlet: Sent the message to YourQueue:"+ JMSmessage.getText());
             messageProducer.send(JMSmessage);
         } catch(Exception ex){
             ex.printStackTrace();
