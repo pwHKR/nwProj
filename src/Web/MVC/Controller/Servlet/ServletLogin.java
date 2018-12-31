@@ -1,10 +1,8 @@
 package Web.MVC.Controller.Servlet;
 
 import Web.MVC.Controller.Bean.LoginBean;
+import Web.MVC.Controller.Bean.SendMessageBean;
 
-import javax.jms.*;
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +12,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @SuppressWarnings("serial")
-@WebServlet(name = "Web.MVC.Controller.Servlet.LoginServlet", urlPatterns = {"/Web.MVC.Controller.Servlet.LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "Web.MVC.Controller.Servlet.ServletLogin", urlPatterns = {"/Web.MVC.Controller.Servlet.ServletLogin"})
+public class ServletLogin extends HttpServlet {
 
 
 
@@ -41,7 +39,8 @@ public class LoginServlet extends HttpServlet {
 
 
 
-        //
+        // For sending message to jms queue
+        SendMessageBean sendMessageBean = new SendMessageBean();
 
 
 
@@ -66,9 +65,9 @@ public class LoginServlet extends HttpServlet {
 
 
 
-           // boolean isLoginValid = manageAccount.validatePassword(userName,password);
 
-            sendMessage(userName+ " accessed login");
+
+            sendMessageBean.sendMessage(userName+ " accessed login","ServletLogin");
 
 
 
@@ -79,7 +78,7 @@ public class LoginServlet extends HttpServlet {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<title>Servlet LoginServlet</title>");
+                out.println("<title>Servlet ServletLogin</title>");
                 out.println("</head>");
                 out.println("<body>");
 
@@ -96,7 +95,8 @@ public class LoginServlet extends HttpServlet {
 
         else{
 
-            sendMessage(userName+ " failed to login\npassword used: "+password);
+
+            sendMessageBean.sendMessage(userName+ " failed to login\npassword used: "+password,"ServletLogin");
 
 
 
@@ -109,21 +109,5 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    private void sendMessage(String message) throws IOException {
-        try{
-            Context ctx = new InitialContext();
-            ConnectionFactory connectionFactory = (ConnectionFactory)ctx.lookup("jms/RegConnectionFactory");
-            Queue queue = (Queue)ctx.lookup("jms/RegQueue");
 
-            javax.jms.Connection  connection = connectionFactory.createConnection();
-            javax.jms.Session        session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
-            MessageProducer messageProducer = session.createProducer(queue);
-            TextMessage JMSmessage = session.createTextMessage();
-            JMSmessage.setText(message);
-            System.out.println( "***** LoginServlet: Sent the message to YourQueue:"+ JMSmessage.getText());
-            messageProducer.send(JMSmessage);
-        } catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
 }

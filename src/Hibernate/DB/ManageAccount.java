@@ -49,8 +49,8 @@ public ManageAccount(){
 
         /* Add few account records in database */
 
-       // ME.addEmployee("peter","hej","peter@mailKing.com");
-        //ME.addEmployee("adam","hej","se@ada.com");
+       // ME.AddAccount("peter","hej","peter@mailKing.com");
+        //ME.AddAccount("adam","hej","se@ada.com");
 
 
 
@@ -73,7 +73,7 @@ public ManageAccount(){
 
 
     //Method to CREATE an employee in the database */
-    public void addEmployee(String userName,String password, String email){
+    public void AddAccount(String userName, String password, String email){
         //Session session = factory.openSession();
         Transaction tx = null;
         Integer employeeID = null;

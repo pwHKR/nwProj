@@ -5,12 +5,23 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>Web.MVC.Controller.Servlet.LoginServlet</servlet-name>
-        <servlet-class>Web.MVC.Controller.Servlet.LoginServlet</servlet-class>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletLogin</servlet-name>
+        <servlet-class>Web.MVC.Controller.Servlet.ServletLogin</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Web.MVC.Controller.Servlet.LoginServlet</servlet-name>
-        <url-pattern>/Web.MVC.Controller.Servlet.LoginServlet</url-pattern>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletLogin</servlet-name>
+        <url-pattern>/Web.MVC.Controller.Servlet.ServletLogin</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletReg</servlet-name>
+        <servlet-class>Web.MVC.Controller.Servlet.ServletReg</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletReg</servlet-name>
+        <url-pattern>/Web.MVC.Controller.Servlet.ServletReg</url-pattern>
+    </servlet-mapping>
+
 </web-app>

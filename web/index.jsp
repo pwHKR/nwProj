@@ -12,14 +12,18 @@
   <title>Login Page</title>
 </head>
 <body>
-<form action="Web.MVC.Controller.Servlet.LoginServlet" method="GET">
+
+<form action="Web.MVC.Controller.Servlet.ServletLogin" method="GET">
   <h2>Login</h2><br>
   <b> UserName: </b>  <input name="userName" type="text" minlength ="1" > <br><br>
   <b> Password: </b> <input name="password" type="text" maxlength="10" minlength="1"> <br><br>
 
 
 
-  <input type="submit" value="Register" />
+  <input type="submit" value="Login" />
 </form>
+
+<a href="<%="http://localhost:8080/nwProj_war_exploded/RegAccount.jsp"%>">Register Account</a>
 </body>
+
 </html>
