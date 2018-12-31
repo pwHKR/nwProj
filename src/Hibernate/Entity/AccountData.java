@@ -1,17 +1,38 @@
-package MVC.Model.DB;
+package Hibernate.Entity;
 
-public class Account {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-    private String userName;
+// Entity bean that defines an AccountData
 
-    private String password;
+@Entity
+@javax.persistence.Table(name = "Account")
+public class AccountData {
 
-    private String email;
 
+    @Id @GeneratedValue
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "userName")
+    private String userName;
 
-    public Account(String userName, String password, String email) {
+    @Column(name = "password")
+    private String password;
+
+    @Column(name ="email")
+    private String email;
+
+
+
+
+
+    public AccountData(){}
+
+
+    public AccountData(String userName, String password, String email) {
         this.userName = userName;
         this.password = password;
         this.email = email;
@@ -41,6 +62,7 @@ public class Account {
         this.email = email;
     }
 
+
     public int getId() {
         return id;
     }
@@ -48,6 +70,4 @@ public class Account {
     public void setId(int id) {
         this.id = id;
     }
-
-
 }

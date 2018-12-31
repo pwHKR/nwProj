@@ -1,0 +1,1 @@
+the View files (jsp and xml) are resident in the other webfolder ( with a small capital w)

@@ -12,10 +12,10 @@
   <title>Login Page Page</title>
 </head>
 <body>
-<form action="LoginServlet" method="GET">
+<form action="Web.MVC.Controller.Servlet.LoginServlet" method="GET">
   <h2>Login</h2><br>
   <b> UserName: </b>  <input name="userName" type="text" minlength ="1" > <br><br>
-  <b> Password: </b> <input name="password" type="text" maxlength="6" minlength="4"> <br><br>
+  <b> Password: </b> <input name="password" type="text" maxlength="10" minlength="1"> <br><br>
 
 
 

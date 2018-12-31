@@ -1,5 +1,10 @@
-package MVC.Controller;
+package Web.MVC.Controller.Servlet;
 
+import Web.MVC.Controller.Bean.LoginBean;
+
+import javax.jms.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,11 +14,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @SuppressWarnings("serial")
-@WebServlet(name = "MVC.Controller.LoginServlet", urlPatterns = {"/MVC.Controller.LoginServlet"})
+@WebServlet(name = "Web.MVC.Controller.Servlet.LoginServlet", urlPatterns = {"/Web.MVC.Controller.Servlet.LoginServlet"})
 public class LoginServlet extends HttpServlet {
+
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         processRequest(req,resp);
     }
 
@@ -24,6 +32,16 @@ public class LoginServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+
+
+        LoginBean loginBean = new LoginBean();
+
+
+                loginBean.test();
+
+        //
+
 
 
         String userName = request.getParameter("userName");
@@ -59,7 +77,16 @@ public class LoginServlet extends HttpServlet {
 
         */
 
-        if(!userName.isEmpty() && password.length() >= 4 && password.length() <= 6){
+        if(!userName.isEmpty() && password.length() >= 1 && password.length() <= 10){
+
+
+
+
+           // boolean isLoginValid = manageAccount.validatePassword(userName,password);
+
+            sendMessage(userName+ " accsesed login");
+
+
 
 
             response.setContentType("text/html;charset=UTF-8");
@@ -83,6 +110,24 @@ public class LoginServlet extends HttpServlet {
                 out.println("</html>");
             }
 
+        }
+    }
+
+    private void sendMessage(String message) throws IOException {
+        try{
+            Context ctx = new InitialContext();
+            ConnectionFactory connectionFactory = (ConnectionFactory)ctx.lookup("jms/RegConnectionFactory");
+            Queue queue = (Queue)ctx.lookup("jms/RegQueue");
+
+            javax.jms.Connection  connection = connectionFactory.createConnection();
+            javax.jms.Session        session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
+            MessageProducer messageProducer = session.createProducer(queue);
+            TextMessage JMSmessage = session.createTextMessage();
+            JMSmessage.setText(message);
+            System.out.println( "***** RegServlet: Sent the message to YourQueue:"+ JMSmessage.getText());
+            messageProducer.send(JMSmessage);
+        } catch(Exception ex){
+            ex.printStackTrace();
         }
     }
 }
