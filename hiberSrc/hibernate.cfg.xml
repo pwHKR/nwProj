@@ -41,6 +41,11 @@
 
         <mapping class="Hibernate.Entity.AccountData"/>
 
+        <mapping resource = "Person.hbm.xml"/>
+
+
+        <mapping class="Hibernate.Entity.Person"/>
+
 
 
 

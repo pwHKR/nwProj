@@ -25,6 +25,9 @@ public class AccountData {
     @Column(name ="email")
     private String email;
 
+    @Column(name ="isOnline")
+    private int isOnline;
+
 
 
 
@@ -62,6 +65,14 @@ public class AccountData {
         this.email = email;
     }
 
+
+    public int getIsOnline() {
+        return isOnline;
+    }
+
+    public void setIsOnline(int isOnline) {
+        this.isOnline = isOnline;
+    }
 
     public int getId() {
         return id;

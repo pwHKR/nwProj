@@ -1,20 +1,25 @@
 package Web.MVC.Controller.Bean;
 
-import Hibernate.DB.ManageAccount;
+import Hibernate.Entity.AccountData;
+import Hibernate.Entity.Person;
+import Hibernate.Manage.ManageAccount;
 
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 
-@Stateful(name = "RegisterEJB")
+@Stateless(name = "RegisterEJB")
 public class RegisterBean {
     public RegisterBean() {
     }
 
 
-    public void registerAccont(String username,String password,String email){
+
+
+
+    public void registerAccount(AccountData accountData,Person person){
 
         ManageAccount manageAccount = new ManageAccount();
 
-        manageAccount.AddAccount(username,password,email);
+        manageAccount.AddAccount(accountData,person);
 
 
     }

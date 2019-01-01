@@ -1,6 +1,6 @@
 package Web.MVC.Controller.Bean;
 
-import Hibernate.DB.ManageAccount;
+import Hibernate.Manage.ManageAccount;
 
 import javax.ejb.Stateful;
 

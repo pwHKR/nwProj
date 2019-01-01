@@ -1,5 +1,7 @@
 package Web.MVC.Controller.Servlet;
 
+import Hibernate.Entity.AccountData;
+import Hibernate.Entity.Person;
 import Web.MVC.Controller.Bean.RegisterBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
 
@@ -66,7 +68,11 @@ public class ServletReg extends HttpServlet {
 
             RegisterBean registerBean = new RegisterBean();
 
-            registerBean.registerAccont(userName,password,email);
+            AccountData accountData = new AccountData(userName,password,email);
+            Person person = new Person(firstName,lastName,"na");
+
+
+            registerBean.registerAccount(accountData,person);
 
             sendMessageBean.sendMessage(userName+ " Registerd","ServletReg");
 
@@ -76,6 +82,9 @@ public class ServletReg extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
+
+
+
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
@@ -85,6 +94,7 @@ public class ServletReg extends HttpServlet {
 
 
                 out.println("<h3>Welcome to the social network </h3> <h2>" + userName+"</h2>");
+
 
 
 
