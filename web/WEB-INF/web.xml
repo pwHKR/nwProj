@@ -24,4 +24,15 @@
         <url-pattern>/Web.MVC.Controller.Servlet.ServletReg</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletWelcome</servlet-name>
+        <servlet-class>Web.MVC.Controller.Servlet.ServletWelcome</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletWelcome</servlet-name>
+        <url-pattern>/Web.MVC.Controller.Servlet.ServletWelcome</url-pattern>
+    </servlet-mapping>
+
 </web-app>

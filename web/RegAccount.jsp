@@ -11,7 +11,6 @@
 <!DOCTYPE html PUBLIC "">
 <html>
 <head>
-
     <title> Registration Form</title>
 </head>
 <body>

@@ -36,6 +36,14 @@ public class Person {
         this.adress = adress;
     }
 
+
+    public Person(String firstName, String lastName, String adress, int account_id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adress = adress;
+        Account_id = account_id;
+    }
+
     public int getId() {
         return id;
     }
@@ -77,4 +85,14 @@ public class Person {
     }
 
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", adress='" + adress + '\'' +
+                ", Account_id=" + Account_id +
+                '}';
+    }
 }

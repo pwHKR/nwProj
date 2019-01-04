@@ -20,12 +20,8 @@ public class LoginBean {
         return manageAccount.validatePassword(userName,password);
 }
 
-    public void test(){
+   public void test(){
 
-        ManageAccount manageAccount = new ManageAccount();
-
-        System.out.println("calling test in Login Bean");
-
-        manageAccount.listAccounts();
-    }
+       System.out.println("calling test in Login Bean");
+   }
 }

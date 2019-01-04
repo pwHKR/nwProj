@@ -1,1 +1,1 @@
-the View files (jsp and xml) are resident in the other webfolder ( with a small capital w)
+ the View files of JSO type are resident in the Java EE  webfolder ( with a small capital w)
