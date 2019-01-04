@@ -1,7 +1,9 @@
 package Web.MVC.Controller.Servlet;
 
+import Hibernate.Entity.Person;
 import Web.MVC.Controller.Bean.SearchBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
+import Web.MVC.View.ResponseHTML;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 @WebServlet(name = "ServletWelcome")
 public class ServletWelcome extends HttpServlet {
@@ -29,8 +32,8 @@ public class ServletWelcome extends HttpServlet {
 
 
 
-        boolean isValidate = false;
 
+        String output = "";
 
 
 
@@ -39,13 +42,22 @@ public class ServletWelcome extends HttpServlet {
         SendMessageBean sendMessageBean = new SendMessageBean();
 
 
+        ArrayList<Person> person;
 
         String searchFor = request.getParameter("inputSearch");
 
 
         SearchBean searchBean = new SearchBean();
 
-        searchBean.searchForPersons(searchFor);
+        person = searchBean.searchForPersons(searchFor);
+
+
+
+
+
+        //TODO: insert loop and use String builder to get all the persons into one String
+        String personPrint =person.get(0).getFirstName()+" "+person.get(0).getLastName()+
+                "\nUsername: "+person.get(0).getUserNameFK();
 
 
 
@@ -83,9 +95,16 @@ public class ServletWelcome extends HttpServlet {
 
                     */
 
+                ResponseHTML rh = new ResponseHTML();
 
 
-                response.sendRedirect("welcome.jsp");
+
+
+                out.println(rh.searchFriend(personPrint,"logged in"));
+
+
+
+               // response.sendRedirect("welcome.jsp");
 
 
             }
