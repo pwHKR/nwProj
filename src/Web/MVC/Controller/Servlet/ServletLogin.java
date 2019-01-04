@@ -52,6 +52,8 @@ public class ServletLogin extends HttpServlet {
 
         LoginBean loginBean = new LoginBean();
 
+
+
         isValidate = loginBean.validate(userName,password);
 
 
@@ -95,6 +97,8 @@ public class ServletLogin extends HttpServlet {
 
 
                 ResponseHTML responseHTML = new ResponseHTML();
+
+               // System.out.println(responseHTML.loginOK(userName));
 
                 out.println(responseHTML.loginOK(userName));
 

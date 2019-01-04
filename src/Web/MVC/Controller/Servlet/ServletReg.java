@@ -1,6 +1,6 @@
 package Web.MVC.Controller.Servlet;
 
-import Hibernate.Entity.AccountData;
+import Hibernate.Entity.Account;
 import Hibernate.Entity.Person;
 import Web.MVC.Controller.Bean.RegisterBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
@@ -68,11 +68,11 @@ public class ServletReg extends HttpServlet {
 
             RegisterBean registerBean = new RegisterBean();
 
-            AccountData accountData = new AccountData(userName,password,email);
+            Account account = new Account(userName,password,email);
             Person person = new Person(firstName,lastName,"na");
 
 
-            registerBean.registerAccount(accountData,person);
+            registerBean.registerAccount(account,person);
 
             sendMessageBean.sendMessage(userName+ " Registerd","ServletReg");
 

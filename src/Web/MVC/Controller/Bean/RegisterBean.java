@@ -1,6 +1,6 @@
 package Web.MVC.Controller.Bean;
 
-import Hibernate.Entity.AccountData;
+import Hibernate.Entity.Account;
 import Hibernate.Entity.Person;
 import Hibernate.Manage.ManageAccount;
 
@@ -15,11 +15,11 @@ public class RegisterBean {
 
 
 
-    public void registerAccount(AccountData accountData,Person person){
+    public void registerAccount(Account account, Person person){
 
         ManageAccount manageAccount = new ManageAccount();
 
-        manageAccount.AddAccount(accountData,person);
+        manageAccount.AddAccount(account,person);
 
 
     }

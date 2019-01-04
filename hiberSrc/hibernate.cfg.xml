@@ -39,7 +39,7 @@
         <mapping resource = "Account.hbm.xml"/>
 
 
-        <mapping class="Hibernate.Entity.AccountData"/>
+        <mapping class="Hibernate.Entity.Account"/>
 
         <mapping resource = "Person.hbm.xml"/>
 

@@ -1,6 +1,6 @@
 package Hibernate.Manage;
 
-import Hibernate.Entity.AccountData;
+import Hibernate.Entity.Account;
 import Hibernate.Entity.Person;
 import Hibernate.HibernateUtil;
 import org.hibernate.HibernateException;
@@ -32,7 +32,7 @@ public ManageAccount(){
 
     /*
     try {
-            factory = new AnnotationConfiguration().configure().addAnnotatedClass(AccountData.class).buildSessionFactory();
+            factory = new AnnotationConfiguration().configure().addAnnotatedClass(Account.class).buildSessionFactory();
         } catch (Throwable ex) {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
@@ -74,7 +74,7 @@ public ManageAccount(){
 
 
     //Method to CREATE an Account in the database */
-    public void AddAccount(AccountData accountData, Person person){
+    public void AddAccount(Account account, Person person){
         //Session session = factory.openSession();
         Transaction tx = null;
         Integer accountId = null;
@@ -84,7 +84,7 @@ public ManageAccount(){
 
 
 
-            accountId =(Integer)session.save(accountData);
+            accountId =(Integer)session.save(account);
 
             person.setAccount_id(accountId);
             session.save(person);
@@ -103,7 +103,7 @@ public ManageAccount(){
     }
 
 
-    /* Method to  READ all the employees */
+    /* Method to  READ all the accpi nt */
 
 
     public void listAccounts( ){
@@ -112,12 +112,12 @@ public ManageAccount(){
 
         try {
             tx = session.beginTransaction();
-            List accounts = session.createQuery("FROM AccountData ").list();
+            List accounts = session.createQuery("FROM Account ").list();
             for (Iterator iterator = accounts.iterator(); iterator.hasNext();){
-                AccountData accountData = (AccountData) iterator.next();
-                System.out.print("userName: " + accountData.getUserName());
-                System.out.print("\npassword: " + accountData.getPassword());
-                System.out.println("\nemail: " + accountData.getEmail()+"\n---------");
+                Account account = (Account) iterator.next();
+                System.out.print("userName: " + account.getUserName());
+                System.out.print("\npassword: " + account.getPassword());
+                System.out.println("\nemail: " + account.getEmail()+"\n---------");
             }
             tx.commit();
         } catch (HibernateException e) {
@@ -138,16 +138,16 @@ public ManageAccount(){
 
         try {
             tx = session.beginTransaction();
-            List accounts = session.createQuery("FROM AccountData WHERE userName ='"+userName+"'" +
+            List accounts = session.createQuery("FROM Account WHERE userName ='"+userName+"'" +
                     "and password ='"+password+"'").list();
 
 
 
             for (Iterator iterator = accounts.iterator(); iterator.hasNext();){
-                AccountData accountData = (AccountData) iterator.next();
+                Account account = (Account) iterator.next();
 
-                if(userName.equals(accountData.getUserName()) &&
-                        password.equals(accountData.getPassword()));
+                if(userName.equals(account.getUserName()) &&
+                        password.equals(account.getPassword()));
                 {
 
 
@@ -157,9 +157,9 @@ public ManageAccount(){
 
 
                 }
-                System.out.print("userName: " + accountData.getUserName());
-                System.out.print("\npassword: " + accountData.getPassword());
-                System.out.println("\nemail: " + accountData.getEmail()+"\n---------");
+                System.out.print("userName: " + account.getUserName());
+                System.out.print("\npassword: " + account.getPassword());
+                System.out.println("\nemail: " + account.getEmail()+"\n---------");
             }
             tx.commit();
         } catch (HibernateException e) {
@@ -213,6 +213,8 @@ public ManageAccount(){
         }
 
         */
+
+
 
 
 

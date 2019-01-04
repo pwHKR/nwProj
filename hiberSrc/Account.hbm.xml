@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name = "Hibernate.Entity.AccountData" table = "Account">
+    <class name = "Hibernate.Entity.Account" table = "Account">
 
         <meta attribute = "class-description">
             This class contains the Accoun t detail.

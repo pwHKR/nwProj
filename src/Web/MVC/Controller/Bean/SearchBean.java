@@ -13,22 +13,20 @@ public class SearchBean {
 
 
 
-    //TODO: Return Arraylist to Servlet for HTTP Response
-    public void searchUserName(String username){
+
+    public ArrayList<Person> searchForPersons(String username){
 
 
-        ManagePerson managePerson = new ManagePerson();
+        ManagePerson mp = new ManagePerson();
 
 
 
-        ArrayList<Person> p;
+        ArrayList<Person> persons;
 
-        p = managePerson.searchList(username);
+        persons = mp.searchBy_userName(username);
 
-        for (Person person: p){
+        return persons;
 
-            System.out.println(person.toString());
-        }
 
 
     }

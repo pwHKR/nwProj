@@ -29,6 +29,13 @@ public class Person {
     @Column(name = "Account_id")
     private int Account_id;
 
+    // Instance variable not part of entity!
+
+    private String userNameFK;
+
+
+
+
 
     public Person(String firstName, String lastName, String adress) {
         this.firstName = firstName;
@@ -42,6 +49,14 @@ public class Person {
         this.lastName = lastName;
         this.adress = adress;
         Account_id = account_id;
+    }
+
+    public Person(String firstName, String lastName, String adress, int account_id, String userNameFK) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adress = adress;
+        Account_id = account_id;
+        this.userNameFK = userNameFK;
     }
 
     public int getId() {
@@ -84,6 +99,13 @@ public class Person {
         Account_id = account_id;
     }
 
+    public String getUserNameFK() {
+        return userNameFK;
+    }
+
+    public void setUserNameFK(String userNameFK) {
+        this.userNameFK = userNameFK;
+    }
 
     @Override
     public String toString() {
@@ -95,4 +117,7 @@ public class Person {
                 ", Account_id=" + Account_id +
                 '}';
     }
+
+
+
 }

@@ -46,23 +46,23 @@ public class ManagePerson {
     }
 
 
-    public ArrayList<Person> searchList(String userNameSearch){
+    public ArrayList<Person> searchBy_userName(String username){
 
 
         ArrayList<Person> personArrayList = new ArrayList<>();
 
-        String searchParameter ="%"+ userNameSearch +"%";
+        String searchParameter ="%"+ username +"%";
 
         session.getSessionFactory().openSession();
         Transaction tx = null;
 
 
 
-        //List<Object[]> authors = q.getResultList();
+
         try {
             tx = session.beginTransaction();
             Query query = session.createNativeQuery("select Person.id,Person.firstName,Person.lastName,Person.adress," +
-                    " Person.Account_id from Account,Person where Account_id =Account.id and Account.userName" +
+                    " Person.Account_id, Account.userName from Account,Person where Account_id =Account.id and Account.userName" +
                     " LIKE :sp");
             query.setParameter("sp",searchParameter);
 
@@ -72,7 +72,7 @@ public class ManagePerson {
            for(Object[] result: personQueryList){
 
                Person person = new Person(result[1].toString(),result[2].toString(),
-                       result[3].toString(),Integer.valueOf(result[4].toString()));
+                       result[3].toString(),Integer.valueOf(result[4].toString()),result[5].toString());
 
                personArrayList.add(person);
 

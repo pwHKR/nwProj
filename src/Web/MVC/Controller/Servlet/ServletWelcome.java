@@ -45,7 +45,7 @@ public class ServletWelcome extends HttpServlet {
 
         SearchBean searchBean = new SearchBean();
 
-        searchBean.searchUserName(searchFor);
+        searchBean.searchForPersons(searchFor);
 
 
 
@@ -85,7 +85,7 @@ public class ServletWelcome extends HttpServlet {
 
 
 
-                response.sendRedirect("temp.jsp");
+                response.sendRedirect("welcome.jsp");
 
 
             }

@@ -5,11 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-// Entity bean that defines an AccountData
+// Entity bean that defines an Account
 
 @Entity
 @javax.persistence.Table(name = "Account")
-public class AccountData {
+public class Account {
 
 
     @Id @GeneratedValue
@@ -32,10 +32,10 @@ public class AccountData {
 
 
 
-    public AccountData(){}
+    public Account(){}
 
 
-    public AccountData(String userName, String password, String email) {
+    public Account(String userName, String password, String email) {
         this.userName = userName;
         this.password = password;
         this.email = email;
