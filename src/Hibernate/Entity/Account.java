@@ -1,23 +1,25 @@
 package Hibernate.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 // Entity bean that defines an Account
 
+
+
 @Entity
 @javax.persistence.Table(name = "Account")
-public class Account {
+public class Account implements Serializable {
 
 
     @Id @GeneratedValue
     @Column(name = "id")
     private int id;
 
+
     @Column(name = "userName")
     private String userName;
+
 
     @Column(name = "password")
     private String password;

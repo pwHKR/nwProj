@@ -4,9 +4,31 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <!-- SECURITY -->
+
+
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>file</realm-name>
+    </login-config>
+
+
+    <security-role>
+        <description/>
+        <role-name>normalUser</role-name>
+    </security-role>
+
+
+
+
+
+
+    <!-- SERVLET -->
     <servlet>
         <servlet-name>Web.MVC.Controller.Servlet.ServletLogin</servlet-name>
         <servlet-class>Web.MVC.Controller.Servlet.ServletLogin</servlet-class>
+
+
     </servlet>
 
     <servlet-mapping>
@@ -28,11 +50,25 @@
     <servlet>
         <servlet-name>Web.MVC.Controller.Servlet.ServletWelcome</servlet-name>
         <servlet-class>Web.MVC.Controller.Servlet.ServletWelcome</servlet-class>
+
     </servlet>
 
     <servlet-mapping>
         <servlet-name>Web.MVC.Controller.Servlet.ServletWelcome</servlet-name>
         <url-pattern>/Web.MVC.Controller.Servlet.ServletWelcome</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletLoginTest</servlet-name>
+        <servlet-class>Web.MVC.Controller.Servlet.ServletLoginTest</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletLoginTest</servlet-name>
+        <url-pattern>/Web.MVC.Controller.Servlet.ServletLoginTest</url-pattern>
+    </servlet-mapping>
+
+
 
 </web-app>

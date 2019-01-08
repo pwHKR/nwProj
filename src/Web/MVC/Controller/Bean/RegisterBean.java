@@ -22,5 +22,7 @@ public class RegisterBean {
         manageAccount.AddAccount(account,person);
 
 
+
+
     }
 }

@@ -5,7 +5,10 @@ import Web.MVC.Controller.Bean.SearchBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
 import Web.MVC.View.ResponseHTML;
 
+import javax.annotation.security.DeclareRoles;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +17,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+
 @WebServlet(name = "ServletWelcome")
+@DeclareRoles("normalUser")
+
+
+@ServletSecurity(
+        @HttpConstraint(transportGuarantee = ServletSecurity.TransportGuarantee.NONE,
+                rolesAllowed = {"normalUser"}))
+
 public class ServletWelcome extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -42,12 +53,12 @@ public class ServletWelcome extends HttpServlet {
         SendMessageBean sendMessageBean = new SendMessageBean();
 
 
-        ArrayList<Person> person;
+       ArrayList<Person> person;
 
         String searchFor = request.getParameter("inputSearch");
 
 
-        SearchBean searchBean = new SearchBean();
+       SearchBean searchBean = new SearchBean();
 
         person = searchBean.searchForPersons(searchFor);
 
@@ -55,8 +66,9 @@ public class ServletWelcome extends HttpServlet {
 
 
 
+
         //TODO: insert loop and use String builder to get all the persons into one String
-        String personPrint =person.get(0).getFirstName()+" "+person.get(0).getLastName()+
+       String personPrint =person.get(0).getFirstName()+" "+person.get(0).getLastName()+
                 "\nUsername: "+person.get(0).getUserNameFK();
 
 
@@ -75,36 +87,20 @@ public class ServletWelcome extends HttpServlet {
 
 
 
+
             response.setContentType("text/html;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-
-                /*
-
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet ServletLogin</title>");
-                out.println("</head>");
-                out.println("<body>");
-
-
-
-                    out.println("<h3>Welcome to the social network </h3> <h2>" + userName+"</h2>");
-
-
-                    */
 
                 ResponseHTML rh = new ResponseHTML();
 
 
 
 
-                out.println(rh.searchFriend(personPrint,"logged in"));
+               out.println(rh.searchFriend(personPrint,request.getUserPrincipal().getName()));
 
 
 
-               // response.sendRedirect("welcome.jsp");
+                //response.sendRedirect("welcome.jsp");
 
 
             }

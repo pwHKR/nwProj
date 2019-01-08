@@ -4,6 +4,7 @@ import Hibernate.Manage.ManageAccount;
 
 import javax.ejb.Stateful;
 
+
 @Stateful(name = "LoginEJB")
 public class LoginBean {
 
@@ -16,6 +17,8 @@ public class LoginBean {
     public boolean validate(String userName,String password){
 
     ManageAccount manageAccount = new ManageAccount();
+
+
 
         return manageAccount.validatePassword(userName,password);
 }
