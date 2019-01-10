@@ -36,7 +36,7 @@
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
 
-            <% out.print(request.getUserPrincipal().getName()); %></a>
+            <% out.print(request.getRemoteUser()); %></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -50,7 +50,7 @@
                     <a class="nav-link js-scroll-trigger" href="#projects">Friends</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger"  href="http://localhost:8080/nwProj_war_exploded/" <% request.logout(); %>>Log out</a>
+                    <a class="nav-link js-scroll-trigger" onclick="<% System.out.println(request.getUserPrincipal().getName()+ " logged out");request.logout(); %> "  href="http://localhost:8080/nwProj_war_exploded/" >Log out</a>
                 </li>
             </ul>
         </div>

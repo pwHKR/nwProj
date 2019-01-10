@@ -4,18 +4,18 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name = "Hibernate.Entity.Person_has_Friend" table = "Person_has_Friend">
+    <class name = "Hibernate.Entity.Group" table = "Group">
 
         <meta attribute = "class-description">
-            This class contains the linking table details.
+            This class contains the group details.
         </meta>
 
         <id name = "id" type = "int" column = "id">
             <generator class="native"/>
         </id>
 
-        <property name = "person_id" column = "person_id" type = "int"/>
-        <property name = "friend_id" column = "friend_id" type = "int"/>
+        <property name = "role" column = "role" type = "string"/>
+        <property name = "userName_FK" column = "userName_FK" type = "string"/>
 
 
     </class>

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 @Stateful(name = "SearchBeanEJB")
 public class SearchBean {
+
     public SearchBean() {
     }
 
@@ -25,9 +26,32 @@ public class SearchBean {
 
         persons = mp.searchBy_userName(username);
 
+
+
+
         return persons;
 
 
 
+    }
+
+    public String testList(String search){
+
+
+
+        String personPrint = "";
+
+
+        ArrayList<Person> persons;
+
+
+        persons = searchForPersons(search);
+
+
+        //TODO: insert loop and use String builder to get all the persons into one String
+        personPrint =persons.get(0).getFirstName()+" "+persons.get(0).getLastName()+
+                "\nUsername: "+persons.get(0).getUserNameFK();
+
+        return personPrint;
     }
 }

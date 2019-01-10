@@ -4,8 +4,9 @@ import Web.MVC.Controller.Bean.LoginBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
 import Web.MVC.View.ResponseHTML;
 
-import javax.annotation.security.DeclareRoles;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-@DeclareRoles("normalUser")
+//@DeclareRoles("normalUser")
+@ServletSecurity(value = @HttpConstraint(rolesAllowed ="normalUser"))
 
 
 
@@ -91,7 +93,7 @@ public class ServletLogin extends HttpServlet {
 
 
             try{
-            request.getUserPrincipal().getName();}
+            request.getRemoteUser();}
             catch (NullPointerException e){isUserPrincipal = true;}
 
 
@@ -156,7 +158,7 @@ public class ServletLogin extends HttpServlet {
 
                 ResponseHTML responseHTML = new ResponseHTML();
 
-               // System.out.println(responseHTML.loginOK(userName));
+               System.out.println(responseHTML.loginOK(userName));
 
                 //out.println(responseHTML.loginOK(userName));
 

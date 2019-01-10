@@ -2,10 +2,10 @@ package Web.MVC.Controller.Bean;
 
 import Hibernate.Manage.ManageAccount;
 
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 
 
-@Stateful(name = "LoginEJB")
+@Stateless(name = "LoginEJB")
 public class LoginBean {
 
 

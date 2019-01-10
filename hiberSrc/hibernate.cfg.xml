@@ -47,15 +47,46 @@
 
 
         <!-- List of XML mapping files -->
+
+        <!-- Account -->
         <mapping resource = "Account.hbm.xml"/>
 
 
         <mapping class="Hibernate.Entity.Account"/>
 
+        <!-- Person -->
+
         <mapping resource = "Person.hbm.xml"/>
 
 
         <mapping class="Hibernate.Entity.Person"/>
+
+        <!-- Friend -->
+
+        <mapping resource = "Friend.hbm.xml"/>
+
+
+        <mapping class="Hibernate.Entity.Friend"/>
+
+
+        <!-- Person_has_Friend -->
+
+        <mapping resource = "Person_has_Friend.hbm.xml"/>
+
+
+        <mapping class="Hibernate.Entity.Person_has_Friend"/>
+
+        <!-- Group -->
+
+        <mapping resource = "Group.hbm.xml"/>
+
+
+        <mapping class="Hibernate.Entity.Group"/>
+
+
+
+
+
 
 
 

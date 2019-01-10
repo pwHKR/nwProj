@@ -5,7 +5,6 @@ import Web.MVC.Controller.Bean.SearchBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
 import Web.MVC.View.ResponseHTML;
 
-import javax.annotation.security.DeclareRoles;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 
 @WebServlet(name = "ServletWelcome")
-@DeclareRoles("normalUser")
+//@DeclareRoles("normalUser")
 
 
 @ServletSecurity(
@@ -45,7 +44,7 @@ public class ServletWelcome extends HttpServlet {
 
 
         String output = "";
-
+       String personPrint= "";
 
 
 
@@ -55,22 +54,22 @@ public class ServletWelcome extends HttpServlet {
 
        ArrayList<Person> person;
 
+       if(request.getParameter("inputSearch") != null){
+
         String searchFor = request.getParameter("inputSearch");
 
+           SearchBean searchBean = new SearchBean();
 
-       SearchBean searchBean = new SearchBean();
+           person = searchBean.searchForPersons(searchFor);
 
-        person = searchBean.searchForPersons(searchFor);
-
-
-
-
+           //TODO: insert loop and use String builder to get all the persons into one String
+            personPrint =person.get(0).getFirstName()+" "+person.get(0).getLastName()+
+                   "\nUsername: "+person.get(0).getUserNameFK();
 
 
-        //TODO: insert loop and use String builder to get all the persons into one String
-       String personPrint =person.get(0).getFirstName()+" "+person.get(0).getLastName()+
-                "\nUsername: "+person.get(0).getUserNameFK();
 
+           sendMessageBean.sendMessage("searched for:  "+searchFor+ " executed by username","ServletWelcome");
+       }
 
 
 
@@ -82,7 +81,18 @@ public class ServletWelcome extends HttpServlet {
 
 
 
-            sendMessageBean.sendMessage("searched for:  "+searchFor+ " executed by username","ServletWelcome");
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -96,7 +106,7 @@ public class ServletWelcome extends HttpServlet {
 
 
 
-               out.println(rh.searchFriend(personPrint,request.getUserPrincipal().getName()));
+               out.println(rh.searchFriend(personPrint,request.getRemoteUser()));
 
 
 

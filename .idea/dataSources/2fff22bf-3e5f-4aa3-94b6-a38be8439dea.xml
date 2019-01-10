@@ -1132,15 +1132,13 @@
       <RefKeyName>PRIMARY</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="277" parent="246" name="Person_id">
+    <column id="277" parent="246" name="person_id">
       <Position>1</Position>
       <DataType>INT(10)|4s</DataType>
-      <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="246" name="Friend_id">
+    <column id="278" parent="246" name="friend_id">
       <Position>2</Position>
       <DataType>INT(10)|4s</DataType>
-      <ColumnKind>normal</ColumnKind>
     </column>
     <column id="279" parent="246" name="id">
       <Position>3</Position>
@@ -1154,11 +1152,11 @@
       <Unique>1</Unique>
     </index>
     <index id="281" parent="246" name="Person_has_Friend_Person_id_fk">
-      <ColNames>Person_id</ColNames>
+      <ColNames>person_id</ColNames>
       <Type>btree</Type>
     </index>
     <index id="282" parent="246" name="Person_has_Friend_Friend_id_fk">
-      <ColNames>Friend_id</ColNames>
+      <ColNames>friend_id</ColNames>
       <Type>btree</Type>
     </index>
     <key id="283" parent="246" name="PRIMARY">
@@ -1166,17 +1164,17 @@
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="284" parent="246" name="Person_has_Friend_Person_id_fk">
-      <ColNames>Person_id</ColNames>
-      <RefSchemaName>nw</RefSchemaName>
-      <RefTableName>Person</RefTableName>
-      <RefKeyName>PRIMARY</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="285" parent="246" name="Person_has_Friend_Friend_id_fk">
+    <foreign-key id="284" parent="246" name="Person_has_Friend_Friend_id_fk">
       <ColNames>Friend_id</ColNames>
       <RefSchemaName>nw</RefSchemaName>
       <RefTableName>Friend</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="285" parent="246" name="Person_has_Friend_Person_id_fk">
+      <ColNames>Person_id</ColNames>
+      <RefSchemaName>nw</RefSchemaName>
+      <RefTableName>Person</RefTableName>
       <RefKeyName>PRIMARY</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>

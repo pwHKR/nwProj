@@ -13,11 +13,12 @@ public class Person_has_Friend {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "Person_id")
+    @Column(name = "person_id")
     private int person_id;
 
-    @Column(name = "Friend_id")
+    @Column(name = "friend_id")
     private int friend_id;
+
 
     public int getId() {
         return id;
