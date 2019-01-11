@@ -16,6 +16,7 @@
 
         <property name = "person_id" column = "person_id" type = "int"/>
         <property name = "friend_id" column = "friend_id" type = "int"/>
+        <property name = "isPending" column = "isPending" type = "int"/>
 
 
     </class>

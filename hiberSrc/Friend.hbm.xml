@@ -16,7 +16,7 @@
 
 
         <property name = "isOnline" column = "isOnline" type = "int"/>
-        <property name = "isPending" column = "isPending" type = "int"/>
+
 
 
     </class>

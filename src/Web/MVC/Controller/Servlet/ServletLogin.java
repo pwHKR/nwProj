@@ -2,11 +2,8 @@ package Web.MVC.Controller.Servlet;
 
 import Web.MVC.Controller.Bean.LoginBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
-import Web.MVC.View.ResponseHTML;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-//@DeclareRoles("normalUser")
-@ServletSecurity(value = @HttpConstraint(rolesAllowed ="normalUser"))
+
 
 
 
@@ -92,8 +88,15 @@ public class ServletLogin extends HttpServlet {
 
 
 
+
             try{
-            request.getRemoteUser();}
+            request.getRemoteUser();
+            if(!request.getRemoteUser().equalsIgnoreCase(userName)){
+
+                request.logout();
+                request.login(userName, password);
+
+            }}
             catch (NullPointerException e){isUserPrincipal = true;}
 
 
@@ -104,7 +107,7 @@ public class ServletLogin extends HttpServlet {
 
                 System.out.println("passed 'request.login' line in code");
 
-                isUserPrincipal = false;
+
             }
 
             try{
@@ -117,7 +120,7 @@ public class ServletLogin extends HttpServlet {
             catch (NullPointerException e){}
 
             try{
-                System.out.println("is user in roll 'normalUser' ?: "+request.isUserInRole("normalUser"));}
+                System.out.println("is user in normal accses role ?: "+request.isUserInRole("level_1"));}
             catch (NullPointerException e){}
 
             try{
@@ -135,7 +138,11 @@ public class ServletLogin extends HttpServlet {
 
 
 
+
             response.setContentType("text/html;charset=UTF-8");
+            response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+            response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
+            response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
 
@@ -156,13 +163,13 @@ public class ServletLogin extends HttpServlet {
                     */
 
 
-                ResponseHTML responseHTML = new ResponseHTML();
+                //ResponseHTML responseHTML = new ResponseHTML();
 
-               System.out.println(responseHTML.loginOK(userName));
+              // System.out.println(responseHTML.loginOK(userName));
 
                 //out.println(responseHTML.loginOK(userName));
 
-                response.sendRedirect("welcome.jsp");
+                response.sendRedirect("member/welcome.jsp");
 
 
 

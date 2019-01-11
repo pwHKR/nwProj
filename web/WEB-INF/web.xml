@@ -13,9 +13,12 @@
     </login-config>
 
 
+
+
+
     <security-role>
         <description/>
-        <role-name>normalUser</role-name>
+        <role-name>level_1</role-name>
     </security-role>
 
 
@@ -56,6 +59,8 @@
     <servlet-mapping>
         <servlet-name>Web.MVC.Controller.Servlet.ServletWelcome</servlet-name>
         <url-pattern>/Web.MVC.Controller.Servlet.ServletWelcome</url-pattern>
+
+
     </servlet-mapping>
 
     <servlet>
@@ -67,7 +72,31 @@
     <servlet-mapping>
         <servlet-name>Web.MVC.Controller.Servlet.ServletLoginTest</servlet-name>
         <url-pattern>/Web.MVC.Controller.Servlet.ServletLoginTest</url-pattern>
+
+
     </servlet-mapping>
+
+
+
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>welcomePage</web-resource-name>
+            <url-pattern>/member/*</url-pattern>
+            <http-method>POST</http-method>
+            <http-method>GET</http-method>
+         
+        </web-resource-collection>
+        <auth-constraint>
+
+            <role-name>level_1</role-name>
+
+
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
 
 
 

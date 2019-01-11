@@ -59,6 +59,19 @@ public class Person {
         this.userNameFK = userNameFK;
     }
 
+
+    public Person(int id,String firstName, String lastName, String adress, int account_id, String userNameFK) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adress = adress;
+        Account_id = account_id;
+        this.userNameFK = userNameFK;
+    }
+
+
+
+
     public int getId() {
         return id;
     }
@@ -107,6 +120,8 @@ public class Person {
         this.userNameFK = userNameFK;
     }
 
+
+
     @Override
     public String toString() {
         return "Person{" +
@@ -115,9 +130,7 @@ public class Person {
                 ", lastName='" + lastName + '\'' +
                 ", adress='" + adress + '\'' +
                 ", Account_id=" + Account_id +
+                ", userNameFK='" + userNameFK + '\'' +
                 '}';
     }
-
-
-
 }

@@ -9,6 +9,11 @@ public class Friend {
 
     public Friend(){}
 
+    public Friend(int isOnline) {
+        this.isOnline = isOnline;
+
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "id")
@@ -17,8 +22,7 @@ public class Friend {
     @Column(name = "isOnline")
     private int isOnline;
 
-    @Column(name = "isPending")
-    private int isPending;
+
 
     public int getId() {
         return id;
@@ -36,11 +40,12 @@ public class Friend {
         this.isOnline = isOnline;
     }
 
-    public int getIsPending() {
-        return isPending;
-    }
 
-    public void setIsPending(int isPending) {
-        this.isPending = isPending;
+    @Override
+    public String toString() {
+        return "Friend{" +
+                "id=" + id +
+                ", isOnline=" + isOnline +
+                '}';
     }
 }

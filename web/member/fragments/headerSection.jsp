@@ -49,8 +49,10 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#projects">Friends</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" onclick="<% System.out.println(request.getUserPrincipal().getName()+ " logged out");request.logout(); %> "  href="http://localhost:8080/nwProj_war_exploded/" >Log out</a>
+
+
+                <li class="nav-item" >
+                    <a class="nav-link js-scroll-trigger"   href="http://localhost:8080/nwProj_war_exploded/logout.jsp" >Log out</a>
                 </li>
             </ul>
         </div>
