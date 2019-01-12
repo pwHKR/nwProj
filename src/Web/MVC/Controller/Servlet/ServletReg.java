@@ -5,6 +5,7 @@ import Hibernate.Entity.Person;
 import Web.MVC.Controller.Bean.RegisterBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,11 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "Web.MVC.Controller.Servlet.ServletReg",urlPatterns = {"/Web.MVC.Controller.Servlet.ServletReg"})
 public class ServletReg extends HttpServlet {
+    @EJB
+    SendMessageBean sendMessageBean;
+
+    @EJB
+    RegisterBean registerBean;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     processRequest(request,response);
     }
@@ -29,7 +35,7 @@ public class ServletReg extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        SendMessageBean sendMessageBean = new SendMessageBean();
+
 
 
 
@@ -66,7 +72,7 @@ public class ServletReg extends HttpServlet {
         if(isFormValid){
 
 
-            RegisterBean registerBean = new RegisterBean();
+
 
             Account account = new Account(userName,password,email);
             Person person = new Person(firstName,lastName,"na");

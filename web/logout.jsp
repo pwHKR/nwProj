@@ -9,7 +9,14 @@
 <html>
 <head>
     <title>Title</title>
-    <%@ include file="java/invalidate.jsp" %>
+    <jsp:useBean id="LoginBean" class="Web.MVC.Controller.Bean.LoginBean" />
+    <%
+
+
+        LoginBean.logout(request);
+    %>
+
+
 </head>
 <body>
 
