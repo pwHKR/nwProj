@@ -1,4 +1,4 @@
-<%--
+<%@ page import="Web.MVC.Controller.Bean.SearchBean" %><%--
   Created by IntelliJ IDEA.
   User: woojen
   Date: 2019-01-04
@@ -13,14 +13,16 @@
     <div class="col-xl-4 col-lg-5">
         <div class="featured-text text-center text-lg-left">
             <h4>Friend search</h4>
-            <p class="text-black-50 mb-0"><%
+            <p class="text-black-50 mb-0">
+                <jsp:useBean id="SearchBeanEJB" class="Web.MVC.Controller.Bean.SearchBean" />
+                <%
 
                 if(request.getParameter("inputSearch") != null){
 
-                    SearchBean searchBean_jsp = new SearchBean();
+
 
                     if(!request.getParameter("inputSearch").equalsIgnoreCase(""))
-                    {out.print(searchBean_jsp.searchForPersons(
+                    {out.print(SearchBeanEJB.searchForPersons(
                             request.getParameter("inputSearch")
                     ));}
 

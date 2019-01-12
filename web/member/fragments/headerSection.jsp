@@ -26,19 +26,11 @@
 
     <!-- Custom styles for this template -->
     <link href="css/grayscale.min.css" rel="stylesheet">
-    <jsp:useBean id="LoginBean" class="Web.MVC.Controller.Bean.LoginBean" />
+
 </head>
 
 <body id="page-top">
-<% if(request.getSession().getAttribute(LoginBean.getUserAttributeString()) == null) {
 
-
-
-
-
-response.sendRedirect("/./index.jsp");
-//response.sendRedirect("welcome.jsp");}
-%>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">

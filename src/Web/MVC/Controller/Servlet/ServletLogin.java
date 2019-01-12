@@ -22,6 +22,8 @@ public class ServletLogin extends HttpServlet {
     @EJB
     SendMessageBean sendMessageBean;
 
+
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -60,6 +62,8 @@ public class ServletLogin extends HttpServlet {
         System.out.println("isValidate Servlet " + isValidate);
 
         if (isValidate) {
+
+            request.getSession().setAttribute(loginBean.getUserAttributeString(),userName);
 
             sendMessageBean.sendMessage(userName+ " Logged in","ServletLogin");
 

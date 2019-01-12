@@ -15,6 +15,8 @@ public class LoginBean {
 
     private final String userAttribute = "userName_session";
 
+    private String remoteUser;
+
 
     public LoginBean() {
 
@@ -31,44 +33,38 @@ public class LoginBean {
 
 
         if (isValidate) {
-            boolean isUserPrincipal = false;
-            // login User java ee auth method
+
 
 
             try {
                 httpServletRequest.getRemoteUser();
-              //  if (!httpServletRequest.getRemoteUser().equalsIgnoreCase(userName)) {
+                if (!httpServletRequest.getRemoteUser().equalsIgnoreCase(userName)) {
 
 
                 httpServletRequest.login(userName, password);
 
+
+
                 httpServletRequest.getSession().setAttribute(userAttribute, userName);
+                remoteUser = httpServletRequest.getRemoteUser();
                     System.out.println("Log in 1 passed in code");
 
+                    }
 
+                    else{httpServletRequest.getSession().invalidate();
 
-               // }
+                    System.out.println("In else of validate method in login bean");
+
+                    //httpServletRequest.getSession().setAttribute(userAttribute,userName);
+                }
+
             } catch (NullPointerException e) {
-                isUserPrincipal = true;
+
             } catch (ServletException e) {
                 e.printStackTrace();
             }
 
-                /*
-            if (isUserPrincipal) {
 
-                try {
-                    httpServletRequest.getSession().setAttribute(userAttribute, userName);
-                    httpServletRequest.login(userName, password);
-                } catch (ServletException e) {
-                    e.printStackTrace();
-                }
-
-
-                System.out.println("passed 'request.login' line in code");
-
-
-            } */
 
             try {
                 System.out.println(httpServletRequest.getAuthType());
@@ -132,6 +128,19 @@ public class LoginBean {
 
     public String getUserAttributeString() {
         return userAttribute;
+    }
+
+
+
+    public String getRemoteUser(){
+
+        if(remoteUser != null) {
+
+            return getRemoteUser();
+        }
+
+        else{return "null";}
+
     }
 
 

@@ -3,10 +3,10 @@ package Web.MVC.Controller.Bean;
 import Hibernate.Entity.Person;
 import Hibernate.Manage.ManagePerson;
 
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import java.util.ArrayList;
 
-@Stateful(name = "SearchBeanEJB")
+@Stateless(name = "SearchBeanEJB")
 public class SearchBean {
 
     public SearchBean() {

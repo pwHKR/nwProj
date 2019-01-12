@@ -5,10 +5,10 @@ import Hibernate.Entity.Person_has_Friend;
 import Hibernate.Manage.ManageFriend;
 import Hibernate.Manage.ManagePerson;
 
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import java.util.ArrayList;
 
-@Stateful(name = "FriendEJB")
+@Stateless(name = "FriendEJB")
 public class FriendBean {
     public FriendBean() {
     }

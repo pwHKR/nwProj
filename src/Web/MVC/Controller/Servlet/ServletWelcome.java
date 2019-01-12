@@ -20,7 +20,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
-@WebServlet(name = "ServletWelcome")
+@WebServlet(name = "Web.MVC.Controller.Servlet.ServletWelcome",urlPatterns = {"/Web.MVC.Controller.Servlet.ServletWelcome"})
 @DeclareRoles("level_1")
 
 
@@ -109,7 +109,7 @@ public class ServletWelcome extends HttpServlet {
                 }
 
 
-                response.sendRedirect("welcome.jsp");
+                response.sendRedirect("member/welcome.jsp");
 
 
             }
