@@ -16,21 +16,12 @@
             <p class="text-black-50 mb-0">
                 <jsp:useBean id="SearchBeanEJB" class="Web.MVC.Controller.Bean.SearchBean" />
                 <%
+                    /*out.print("search result get from  welcome servlet: "+request.getAttribute("result").toString());
+                    if(request.getAttribute("result").toString() != null){
+                    out.print(request.getAttribute("result"));}
 
-                if(request.getParameter("inputSearch") != null){
-
-
-
-                    if(!request.getParameter("inputSearch").equalsIgnoreCase(""))
-                    {out.print(SearchBeanEJB.searchForPersons(
-                            request.getParameter("inputSearch")
-                    ));}
-
-                    else{out.print("no result found on your search");}
-
-
-                }
-            %></p>
+                    else{out.print("no result found on your search");}*/%></p>
+            ${result}
         </div>
     </div>
 </div>

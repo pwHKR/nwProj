@@ -1,9 +1,10 @@
 package Web.MVC.Controller.Servlet;
 
+
 import Hibernate.Entity.Person;
+import Web.MVC.Controller.Bean.LoginBean;
 import Web.MVC.Controller.Bean.SearchBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
-import Web.MVC.View.ResponseHTML;
 
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
@@ -20,7 +21,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
-@WebServlet(name = "Web.MVC.Controller.Servlet.ServletWelcome",urlPatterns = {"/Web.MVC.Controller.Servlet.ServletWelcome"})
+@WebServlet(name = "Web.MVC.Controller.Servlet.ServletWelcome")
 @DeclareRoles("level_1")
 
 
@@ -35,6 +36,9 @@ public class ServletWelcome extends HttpServlet {
 
     @EJB
     SearchBean searchBean;
+
+    @EJB
+    LoginBean loginBean;
 
 
     @RolesAllowed("level_1")
@@ -59,65 +63,80 @@ public class ServletWelcome extends HttpServlet {
 
 
 
-            String output = "";
-            String personPrint = "";
+        String output = "";
+        String personPrint = "";
 
 
 
 
 
-            ArrayList<Person> person;
+        ArrayList<Person> person;
 
-            if (request.getParameter("inputSearch") != null) {
+        if (request.getParameter("inputSearch") != null) {
 
-                String searchFor = request.getParameter("inputSearch");
+            String searchFor = request.getParameter("inputSearch");
 
 
 
-                try {
-                    person = searchBean.searchForPersons(searchFor);
+            try {
+                person = searchBean.searchForPersons(searchFor);
 
-                    //TODO: insert loop and use String builder to get all the persons into one String
-                    personPrint = person.get(0).getFirstName() + " " + person.get(0).getLastName() +
-                            "\nUsername: " + person.get(0).getUserNameFK();
+                //TODO: insert loop and use String builder to get all the persons into one String
+                personPrint = person.get(0).getFirstName() + " " + person.get(0).getLastName() +
+                        "\nUsername: " + person.get(0).getUserNameFK();
 
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("IndexOutOfBoundsException 1st on search");
-                    personPrint = "no result found on your search";
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("IndexOutOfBoundsException 1st on search");
+                personPrint = "no result found on your search";
 
-                }
+            }
 
-                sendMessageBean.sendMessage("searched for:  " + searchFor + " executed by username", "ServletWelcome");
+            searchBean.setSearchResult(personPrint);
+
+
+            sendMessageBean.sendMessage("searched for:  " + searchFor + " executed by "+loginBean.getUserName(), "ServletWelcome");
+            request.setAttribute("result",searchBean.getSearchResult());
+        }
+
+
+        //response.setContentType("text/html;charset=UTF-8");
+        //response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+        //response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
+        //response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+        //response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
+        try (PrintWriter out = response.getWriter()) {
+
+
+
+
+           //ResponseHTML rh = new ResponseHTML();
+
+
+
+            try {
+               //out.println(rh.searchFriend(personPrint, request.getRemoteUser()));
+            } catch (Exception e) {
+                System.out.println("exeption 2nd search");
             }
 
 
-            response.setContentType("text/html;charset=UTF-8");
-            response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
-            response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
-            response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
-            response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
-            try (PrintWriter out = response.getWriter()) {
 
 
-                ResponseHTML rh = new ResponseHTML();
 
-
-                try {
-                    out.println(rh.searchFriend(personPrint, request.getRemoteUser()));
-                } catch (Exception e) {
-                    System.out.println("exeption 2nd search");
-                }
-
-
-                response.sendRedirect("member/welcome.jsp");
-
-
-            }
+                String redirect =
+                        response.encodeRedirectURL(request.getContextPath() + "/member/welcome.jsp");
+                //response.sendRedirect(redirect)
+            //
+            //
+            request.getRequestDispatcher("/member/welcome.jsp").forward(request, response);
 
 
         }
 
 
     }
+
+
+}
 
 

@@ -4,6 +4,7 @@
     <security-role-mapping>
         <role-name>level_1</role-name>
         <group-name>normalUser</group-name>
+        <principal-name>Prin</principal-name>
     </security-role-mapping>
 
 

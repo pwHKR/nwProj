@@ -9,6 +9,10 @@ import java.util.ArrayList;
 @Stateless(name = "SearchBeanEJB")
 public class SearchBean {
 
+    private String searchPara;
+
+    private String searchResult;
+
     public SearchBean() {
     }
 
@@ -53,5 +57,21 @@ public class SearchBean {
                 "\nUsername: "+persons.get(0).getUserNameFK();
 
         return personPrint;
+    }
+
+    public String getSearchPara() {
+        return searchPara;
+    }
+
+    public void setSearchPara(String searchPara) {
+        this.searchPara = searchPara;
+    }
+
+    public String getSearchResult() {
+        return searchResult;
+    }
+
+    public void setSearchResult(String searchResult) {
+        this.searchResult = searchResult;
     }
 }

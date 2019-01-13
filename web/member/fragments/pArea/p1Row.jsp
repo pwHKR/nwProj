@@ -15,7 +15,7 @@
             <div class="d-flex h-100">
                 <div class="project-text w-100 my-auto text-center text-lg-left">
                     <h4 class="text-white">Friends</h4>
-                    <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                    <p class="mb-0 text-white-50">List of friends here</p>
                     <hr class="d-none d-lg-block mb-0 ml-0">
                 </div>
             </div>

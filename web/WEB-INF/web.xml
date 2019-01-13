@@ -65,8 +65,7 @@
 
     <servlet-mapping>
         <servlet-name>Web.MVC.Controller.Servlet.ServletWelcome</servlet-name>
-        <url-pattern>/Web.MVC.Controller.Servlet.ServletWelcome</url-pattern>
-
+        <url-pattern>/member/Web.MVC.Controller.Servlet.ServletWelcome</url-pattern>
 
     </servlet-mapping>
 

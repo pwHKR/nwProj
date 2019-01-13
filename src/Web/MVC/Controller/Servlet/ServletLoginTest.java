@@ -36,7 +36,7 @@ public class ServletLoginTest extends HttpServlet {
 
             out.println("Before Login"+"<br><br>");
             out.println("IsUserInRole?.." + request.isUserInRole("normalUser")+"<br>");
-            out.println("getRemoteUser?.." + request.getRemoteUser()+"<br>");
+            out.println("getUserName?.." + request.getRemoteUser()+"<br>");
             out.println("getUserPrincipal?.." + request.getUserPrincipal()+"<br>");
             out.println("getAuthType?.." + request.getAuthType()+"<br><br>");
 
@@ -49,14 +49,14 @@ public class ServletLoginTest extends HttpServlet {
             }
             out.println("After Login..."+"<br><br>");
             out.println("IsUserInRole?.." + request.isUserInRole("normalUser")+"<br>");
-            out.println("getRemoteUser?.." + request.getRemoteUser()+"<br>");
+            out.println("getUserName?.." + request.getRemoteUser()+"<br>");
             out.println("getUserPrincipal?.." + request.getUserPrincipal()+"<br>");
             out.println("getAuthType?.." + request.getAuthType()+"<br><br>");
 
             request.logout();
             out.println("After Logout..."+"<br><br>");
             out.println("IsUserInRole?.." + request.isUserInRole("normalUser")+"<br>");
-            out.println("getRemoteUser?.." + request.getRemoteUser()+"<br>");
+            out.println("getUserName?.." + request.getRemoteUser()+"<br>");
             out.println("getUserPrincipal?.." + request.getUserPrincipal()+"<br>");
             out.println("getAuthType?.." + request.getAuthType()+"<br>");
 

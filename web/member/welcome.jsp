@@ -12,11 +12,7 @@
 
 <%@ include file="fragments/headerSection.jsp" %>
 
-<%   String userNameVar = (String) session.getAttribute("userName_session");
-    if (null == userNameVar) {
-        request.setAttribute("Error", "Session has ended.  Please login.");
-        RequestDispatcher rd = request.getRequestDispatcher("/./index.jsp");
-        rd.forward(request, response);}%>
+
 
 
 <!-- About Section -->

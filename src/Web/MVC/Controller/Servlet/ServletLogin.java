@@ -63,7 +63,12 @@ public class ServletLogin extends HttpServlet {
 
         if (isValidate) {
 
-            request.getSession().setAttribute(loginBean.getUserAttributeString(),userName);
+            request.login(userName,password);
+            request.setAttribute(loginBean.getUserAttributeString(),userName);
+            loginBean.setUserNameBeanSession(userName);
+
+
+
 
             sendMessageBean.sendMessage(userName+ " Logged in","ServletLogin");
 

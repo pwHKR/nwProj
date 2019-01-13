@@ -10,12 +10,12 @@ import java.util.concurrent.TimeUnit;
 
 
 @Stateful(name = "LoginEJB")
-@StatefulTimeout(unit = TimeUnit.MINUTES, value = 5)
+@StatefulTimeout(unit = TimeUnit.MINUTES, value = 60)
 public class LoginBean {
 
     private final String userAttribute = "userName_session";
 
-    private String remoteUser;
+    private String userNameBeanSession;
 
 
     public LoginBean() {
@@ -41,12 +41,12 @@ public class LoginBean {
                 if (!httpServletRequest.getRemoteUser().equalsIgnoreCase(userName)) {
 
 
-                httpServletRequest.login(userName, password);
+                    //httpServletRequest.login(userName, password);
 
 
 
                 httpServletRequest.getSession().setAttribute(userAttribute, userName);
-                remoteUser = httpServletRequest.getRemoteUser();
+
                     System.out.println("Log in 1 passed in code");
 
                     }
@@ -60,10 +60,7 @@ public class LoginBean {
 
             } catch (NullPointerException e) {
 
-            } catch (ServletException e) {
-                e.printStackTrace();
             }
-
 
 
             try {
@@ -102,7 +99,7 @@ public class LoginBean {
                 httpServletRequest.getSession().removeAttribute(userAttribute);
 
                 System.out.println(httpServletRequest.getRemoteUser() + " logged out");
-
+            setUserNameBeanSession(httpServletRequest.getRemoteUser());
 
                 try {
                     httpServletRequest.logout();
@@ -131,12 +128,16 @@ public class LoginBean {
     }
 
 
+    public void setUserNameBeanSession(String userNameBeanSession) {
+        this.userNameBeanSession = userNameBeanSession;
+    }
 
-    public String getRemoteUser(){
+    public String getUserName(){
 
-        if(remoteUser != null) {
+        if(userNameBeanSession != null) {
 
-            return getRemoteUser();
+            System.out.println("Login Bean Remote User");
+            return userNameBeanSession;
         }
 
         else{return "null";}

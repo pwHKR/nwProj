@@ -9,12 +9,23 @@
 <html>
 <head>
     <title>Title</title>
+    <script>
+
+            alert("You have been logged out");
+
+    </script>
     <jsp:useBean id="LoginBean" class="Web.MVC.Controller.Bean.LoginBean" />
     <%
 
 
         LoginBean.logout(request);
+
+        String redirect =
+                response.encodeRedirectURL(request.getContextPath());
+        response.sendRedirect(redirect);
     %>
+
+
 
 
 </head>
