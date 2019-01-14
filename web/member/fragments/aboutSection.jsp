@@ -15,6 +15,6 @@
                     <a href="http://startbootstrap.com/template-overviews/grayscale/"></a> </p>
             </div>
         </div>
-        <img src="img/ipad.png" class="img-fluid" alt="">
+        <img src="img/frontIMG.png" class="img-fluid" alt="">
     </div>
 </section>

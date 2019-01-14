@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 public class ServletLogin extends HttpServlet {
 
     @EJB
-    LoginBean loginBean;
+    LoginBean LoginEJB;
 
     @EJB
     SendMessageBean sendMessageBean;
@@ -57,15 +57,17 @@ public class ServletLogin extends HttpServlet {
 
 
 
-        isValidate = loginBean.validate(request,userName, password);
+        isValidate = LoginEJB.validate(request,userName, password);
 
         System.out.println("isValidate Servlet " + isValidate);
 
         if (isValidate) {
 
             request.login(userName,password);
-            request.setAttribute(loginBean.getUserAttributeString(),userName);
-            loginBean.setUserNameBeanSession(userName);
+            request.setAttribute(LoginEJB.getUserAttributeString(),userName);
+            LoginEJB.setUserNameBeanSession(userName);
+
+            LoginEJB.setLoggedOut(false);
 
 
 
@@ -81,7 +83,11 @@ public class ServletLogin extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
 
 
+
                 response.sendRedirect("member/welcome.jsp");
+
+                //RequestDispatcher rd=request.getRequestDispatcher("member/welcome.jsp");
+                //rd.forward(request,response);
 
 
             }

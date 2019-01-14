@@ -1,4 +1,4 @@
-<%--
+<%@ page import="Web.MVC.Controller.Bean.LoginBean" %><%--
   Created by IntelliJ IDEA.
   User: woojen
   Date: 2018-12-29
@@ -21,9 +21,10 @@
   <b> Password: </b> <input name="password" type="password" maxlength="10" minlength="1"> <br><br>
 
 
-
   <input type="submit" value="Login" />
 </form>
+
+
 
 <a href="<%="http://localhost:8080/nwProj_war_exploded/RegAccount.jsp"%>">Register Account</a>
 </body>

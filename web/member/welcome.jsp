@@ -8,10 +8,10 @@
 
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!-- Header Section -->
 
 <%@ include file="fragments/headerSection.jsp" %>
-
 
 
 

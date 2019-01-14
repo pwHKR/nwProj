@@ -1,4 +1,4 @@
-<%--
+<%@ page import="Web.MVC.Controller.Bean.LoginBean" %><%--
   Created by IntelliJ IDEA.
   User: woojen
   Date: 2019-01-11
@@ -14,11 +14,16 @@
             alert("You have been logged out");
 
     </script>
-    <jsp:useBean id="LoginBean" class="Web.MVC.Controller.Bean.LoginBean" />
+    <jsp:useBean id="LoginEJB" scope="session" class="Web.MVC.Controller.Bean.LoginBean" />
     <%
 
 
-        LoginBean.logout(request);
+
+        LoginEJB.setLoggedOut(true);
+
+        LoginEJB.logout(request);
+
+
 
         String redirect =
                 response.encodeRedirectURL(request.getContextPath());

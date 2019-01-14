@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%@ include file="/././java/isValid.jsp" %>
+
 <head>
 
     <meta charset="utf-8">
@@ -37,7 +39,6 @@
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
 
-            <jsp:useBean id="LoginEJB" class="Web.MVC.Controller.Bean.LoginBean" />
             <% out.print(request.getRemoteUser()); %></a>
 
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

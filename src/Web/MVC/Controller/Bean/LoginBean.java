@@ -17,6 +17,8 @@ public class LoginBean {
 
     private String userNameBeanSession;
 
+    private boolean isLoggedOut;
+
 
     public LoginBean() {
 
@@ -41,11 +43,13 @@ public class LoginBean {
                 if (!httpServletRequest.getRemoteUser().equalsIgnoreCase(userName)) {
 
 
-                    //httpServletRequest.login(userName, password);
+                    httpServletRequest.login(userName, password);
 
 
 
-                httpServletRequest.getSession().setAttribute(userAttribute, userName);
+
+                httpServletRequest.setAttribute(userAttribute, userName);
+
 
                     System.out.println("Log in 1 passed in code");
 
@@ -60,6 +64,8 @@ public class LoginBean {
 
             } catch (NullPointerException e) {
 
+            } catch (ServletException e) {
+                e.printStackTrace();
             }
 
 
@@ -103,7 +109,7 @@ public class LoginBean {
 
                 try {
                     httpServletRequest.logout();
-                    httpServletRequest.getSession(true).invalidate();
+                    //httpServletRequest.getSession(true).invalidate();
 
                     result = true;
                 } catch (ServletException e) {
@@ -145,5 +151,12 @@ public class LoginBean {
     }
 
 
+    public boolean isLoggedOut() {
+        return isLoggedOut;
+    }
+
+    public void setLoggedOut(boolean loggedOut) {
+        isLoggedOut = loggedOut;
+    }
 }
 
