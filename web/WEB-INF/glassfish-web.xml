@@ -4,8 +4,10 @@
     <security-role-mapping>
         <role-name>level_1</role-name>
         <group-name>normalUser</group-name>
-        <principal-name>level_1</principal-name>
+
     </security-role-mapping>
+
+
 
 
         <security-role-mapping>

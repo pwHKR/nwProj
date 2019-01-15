@@ -7,29 +7,34 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-@javax.persistence.Table(name = "Group")
+@javax.persistence.Table(name = "group")
 public class Group implements Serializable {
 
 
     public Group(){}
 
+    public Group(String role,String username) {
+        this.username = username;
+        this.role = role;
+    }
+
     @Id @GeneratedValue
     @Column(name = "id")
     private int id;
 
-        @Column(name = "userName_FK")
-        private String userName_FK;
+        @Column(name = "username")
+        private String username;
 
         @Column(name = "role")
         private String role;
 
 
-    public String getUserName_FK() {
-        return userName_FK;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName_FK(String userName_FK) {
-        this.userName_FK = userName_FK;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getRole() {

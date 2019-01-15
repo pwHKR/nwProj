@@ -1,7 +1,9 @@
 package Web.MVC.Controller.Servlet;
 
 import Hibernate.Entity.Account;
+import Hibernate.Entity.Group;
 import Hibernate.Entity.Person;
+import Hibernate.Manage.ManageAccount;
 import Web.MVC.Controller.Bean.RegisterBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
 
@@ -72,15 +74,20 @@ public class ServletReg extends HttpServlet {
         if(isFormValid){
 
 
-
+                String normalRole = "normalUser";
 
             Account account = new Account(userName,password,email);
             Person person = new Person(firstName,lastName,"na");
+            Group group = new Group(normalRole,userName);
 
 
-            registerBean.registerAccount(account,person);
+            ManageAccount manageAccount = new ManageAccount();
 
-            sendMessageBean.sendMessage(userName+ " Registerd","ServletReg");
+            manageAccount.AddAccount(account,person,group);
+
+           // registerBean.registerAccount(account,person,group);
+
+            sendMessageBean.sendMessage(userName+ " Registered","ServletReg");
 
 
 

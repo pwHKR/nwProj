@@ -4,17 +4,17 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name = "Hibernate.Entity.Account" table = "Account">
+    <class name = "Hibernate.Entity.Account" table = "account">
 
         <meta attribute = "class-description">
-            This class contains the Accoun t detail.
+            This class contains the Account detail.
         </meta>
 
         <id name = "id" type = "int" column = "id">
             <generator class="native"/>
         </id>
 
-        <property name = "userName" column = "userName" type = "string"/>
+        <property name = "username" column = "username" type = "string"/>
         <property name = "password" column = "password" type = "string"/>
         <property name = "email" column = "email" type = "string"/>
 

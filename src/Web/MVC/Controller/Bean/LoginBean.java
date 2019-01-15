@@ -15,7 +15,9 @@ public class LoginBean {
 
     private final String userAttribute = "userName_session";
 
-    private String userNameBeanSession;
+    private String userNameStateFull;
+
+
 
     private boolean isLoggedOut;
 
@@ -44,6 +46,8 @@ public class LoginBean {
 
 
                     httpServletRequest.login(userName, password);
+
+                    setUserName(userName);
 
 
 
@@ -105,7 +109,7 @@ public class LoginBean {
                 httpServletRequest.getSession().removeAttribute(userAttribute);
 
                 System.out.println(httpServletRequest.getRemoteUser() + " logged out");
-            setUserNameBeanSession(httpServletRequest.getRemoteUser());
+
 
                 try {
                     httpServletRequest.logout();
@@ -134,22 +138,19 @@ public class LoginBean {
     }
 
 
-    public void setUserNameBeanSession(String userNameBeanSession) {
-        this.userNameBeanSession = userNameBeanSession;
-    }
+    public String getUserName() {
 
-    public String getUserName(){
+        try{
+        return userNameStateFull;}
+        catch (NullPointerException e){
 
-        if(userNameBeanSession != null) {
-
-            System.out.println("Login Bean Remote User");
-            return userNameBeanSession;
+            return "nullBean";
         }
-
-        else{return "null";}
-
     }
 
+    public void setUserName(String userNameStateFull) {
+        this.userNameStateFull = userNameStateFull;
+    }
 
     public boolean isLoggedOut() {
         return isLoggedOut;

@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name = "Hibernate.Entity.Group" table = "Group">
+    <class name = "Hibernate.Entity.Group" table = "group">
 
         <meta attribute = "class-description">
             This class contains the group details.
@@ -15,7 +15,7 @@
         </id>
 
         <property name = "role" column = "role" type = "string"/>
-        <property name = "userName_FK" column = "userName_FK" type = "string"/>
+        <property name = "username" column = "username" type = "string"/>
 
 
     </class>

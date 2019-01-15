@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 
 @Entity
-@javax.persistence.Table(name = "Account")
+@javax.persistence.Table(name = "account")
 public class Account implements Serializable {
 
 
@@ -17,8 +17,8 @@ public class Account implements Serializable {
     private int id;
 
 
-    @Column(name = "userName")
-    private String userName;
+    @Column(name = "username")
+    private String username;
 
 
     @Column(name = "password")
@@ -37,18 +37,18 @@ public class Account implements Serializable {
     public Account(){}
 
 
-    public Account(String userName, String password, String email) {
-        this.userName = userName;
+    public Account(String username, String password, String email) {
+        this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getPassword() {

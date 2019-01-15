@@ -1,6 +1,7 @@
 package Hibernate.Manage;
 
 import Hibernate.Entity.Account;
+import Hibernate.Entity.Group;
 import Hibernate.Entity.Person;
 import Hibernate.HibernateUtil;
 import org.hibernate.HibernateException;
@@ -74,7 +75,7 @@ public ManageAccount(){
 
 
     //Method to CREATE an Account in the database */
-    public void AddAccount(Account account, Person person){
+    public void AddAccount(Account account, Person person, Group group){
         //Session session = factory.openSession();
         Transaction tx = null;
         Integer accountId = null;
@@ -88,6 +89,8 @@ public ManageAccount(){
 
             person.setAccount_id(accountId);
             session.save(person);
+
+            session.save(group);
 
             tx.commit();
 
@@ -115,7 +118,7 @@ public ManageAccount(){
             List accounts = session.createQuery("FROM Account ").list();
             for (Iterator iterator = accounts.iterator(); iterator.hasNext();){
                 Account account = (Account) iterator.next();
-                System.out.print("userName: " + account.getUserName());
+                System.out.print("userName: " + account.getUsername());
                 System.out.print("\npassword: " + account.getPassword());
                 System.out.println("\nemail: " + account.getEmail()+"\n---------");
             }
@@ -138,7 +141,7 @@ public ManageAccount(){
 
         try {
             tx = session.beginTransaction();
-            List accounts = session.createQuery("FROM Account WHERE userName ='"+userName+"'" +
+            List accounts = session.createQuery("FROM Account WHERE username ='"+userName+"'" +
                     "and password ='"+password+"'").list();
 
 
@@ -146,7 +149,7 @@ public ManageAccount(){
             for (Iterator iterator = accounts.iterator(); iterator.hasNext();){
                 Account account = (Account) iterator.next();
 
-                if(userName.equals(account.getUserName()) &&
+                if(userName.equals(account.getUsername()) &&
                         password.equals(account.getPassword()));
                 {
 
@@ -158,7 +161,7 @@ public ManageAccount(){
 
 
                 }
-                System.out.print("userName: " + account.getUserName());
+                System.out.print("userName: " + account.getUsername());
                 System.out.print("\npassword: " + account.getPassword());
                 System.out.println("\nemail: " + account.getEmail()+"\n---------");
             }
