@@ -4,16 +4,26 @@
     <security-role-mapping>
         <role-name>level_1</role-name>
         <group-name>normalUser</group-name>
+    </security-role-mapping>
 
+    <security-role-mapping>
+            <role-name>news</role-name>
+            <group-name>newsAdmin</group-name>
+        </security-role-mapping>
+
+    <security-role-mapping>
+        <role-name>ban</role-name>
+        <group-name>banAdmin</group-name>
+    </security-role-mapping>
+
+    <security-role-mapping>
+        <role-name>super</role-name>
+        <group-name>superAdmin</group-name>
     </security-role-mapping>
 
 
 
 
-        <security-role-mapping>
-            <role-name>noUser</role-name>
-            <group-name>logoutMock</group-name>
-        </security-role-mapping>
 
 
 

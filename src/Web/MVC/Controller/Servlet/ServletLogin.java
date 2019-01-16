@@ -64,7 +64,7 @@ public class ServletLogin extends HttpServlet {
 
         if (isValidate) {
 
-            //TODO: catch already auth exeption
+            //TODO: catch already auth exception
 
             request.login(userName,password);
             request.setAttribute(LoginEJB.getUserAttributeString(),userName);

@@ -16,17 +16,35 @@
 
 
 
-
+    <!-- level 1 is ordinary member -->
     <security-role>
         <description/>
         <role-name>level_1</role-name>
 
     </security-role>
 
+
+    <!-- admin with ban privileges -->
     <security-role>
         <description/>
-        <role-name>noUser</role-name>
+        <role-name>ban</role-name>
     </security-role>
+
+
+    <!-- admin with news adding privileges -->
+    <security-role>
+        <description/>
+        <role-name>news</role-name>
+    </security-role>
+
+
+
+    <!-- admin with all admin privileges -->
+    <security-role>
+        <description/>
+        <role-name>super</role-name>
+    </security-role>
+
 
 
 
@@ -85,6 +103,7 @@
 
 
 
+    <!-- level 1 can access member -->
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>welcomePage</web-resource-name>
@@ -104,7 +123,61 @@
             <transport-guarantee>NONE</transport-guarantee>
         </user-data-constraint>
 
+
+
+
     </security-constraint>
+
+    <!-- news can access admin news -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>AdminPage_news</web-resource-name>
+            <url-pattern>/admin/news.jsp</url-pattern>
+            <http-method>POST</http-method>
+            <http-method>GET</http-method>
+
+
+        </web-resource-collection>
+        <auth-constraint>
+
+            <role-name>news</role-name>
+            <role-name>super</role-name>
+
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+
+    </security-constraint>
+
+
+    <!-- ban can access admin user ban -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>AdminPage</web-resource-name>
+            <url-pattern>/admin/userban.jsp</url-pattern>
+            <http-method>POST</http-method>
+            <http-method>GET</http-method>
+
+
+        </web-resource-collection>
+        <auth-constraint>
+
+            <role-name>ban</role-name>
+            <role-name>super</role-name>
+
+
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+
+    </security-constraint>
+
+    <!-- super can access all admin sites -->
+
+
+
 
 
 
