@@ -71,7 +71,7 @@ public class ManagePerson {
         try {
             tx = session.beginTransaction();
             Query query = session.createNativeQuery("select Person.id,Person.firstName,Person.lastName,Person.adress," +
-                    " Person.Account_id, Account.userName from Account,Person where Account_id =Account.id and Account.userName" +
+                    " Person.Account_id, account.userName from account,Person where Account_id =account.id and account.userName" +
                     " LIKE :sp");
             query.setParameter("sp",searchParameter);
 
