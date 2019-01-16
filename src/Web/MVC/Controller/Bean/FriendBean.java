@@ -29,6 +29,7 @@ public class FriendBean {
     }
 
 
+
     public ArrayList<Person> getFriends(String userName){
 
         ArrayList<Person> personArrayList = new ArrayList<>();

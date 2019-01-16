@@ -1,5 +1,6 @@
 package Web.MVC.Controller.Servlet;
 
+import Hibernate.Manage.ManageFriend;
 import Web.MVC.Controller.Bean.LoginBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
 
@@ -39,6 +40,10 @@ public class ServletLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
+        ManageFriend mf = new ManageFriend();
+
+        System.out.println(mf.tempGetFriendList("peter"));
 
         boolean isValidate;
 
