@@ -1,40 +1,38 @@
 package Hibernate.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@javax.persistence.Table(name = "group")
+@javax.persistence.Table(name = "gdata")
 public class Group implements Serializable {
 
 
     public Group(){}
 
-    public Group(String role,String username) {
+    public Group(String role, String username) {
         this.username = username;
         this.role = role;
     }
 
-    @Id @GeneratedValue
+    @Id@GeneratedValue
     @Column(name = "id")
     private int id;
 
-        @Column(name = "username")
-        private String username;
 
-        @Column(name = "role")
-        private String role;
+    @Column(name = "role")
+    private String role;
+
+    @Column(name = "username")
+    private String username;
 
 
-    public String getUsername() {
-        return username;
+    public int getId() {
+        return id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getRole() {
@@ -45,13 +43,11 @@ public class Group implements Serializable {
         this.role = role;
     }
 
-    public int getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
-
-
 }

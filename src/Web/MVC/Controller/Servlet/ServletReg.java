@@ -78,12 +78,13 @@ public class ServletReg extends HttpServlet {
 
             Account account = new Account(userName,password,email);
             Person person = new Person(firstName,lastName,"na");
-            Group group = new Group(normalRole,userName);
+            Group group = new Group("normalUser",userName.toString());
 
 
             ManageAccount manageAccount = new ManageAccount();
 
-            manageAccount.AddAccount(account,person,group);
+            manageAccount.AddAccount(account,person, group);
+
 
            // registerBean.registerAccount(account,person,group);
 

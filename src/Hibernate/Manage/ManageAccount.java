@@ -77,6 +77,9 @@ public ManageAccount(){
     //Method to CREATE an Account in the database */
     public void AddAccount(Account account, Person person, Group group){
         //Session session = factory.openSession();
+
+
+
         Transaction tx = null;
         Integer accountId = null;
 
@@ -89,8 +92,43 @@ public ManageAccount(){
 
             person.setAccount_id(accountId);
             session.save(person);
-
             session.save(group);
+
+
+
+          //
+
+            tx.commit();
+
+
+
+
+
+
+        } catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+    }
+
+
+    // Add access group to newly created account
+    public void AddGroup(Group group){
+        //Session session = factory.openSession();
+        Transaction tx = null;
+        Integer accountId = null;
+
+        try {
+            tx = session.beginTransaction();
+
+
+
+
+
+             session.save(group);
 
             tx.commit();
 
@@ -104,6 +142,8 @@ public ManageAccount(){
         }
 
     }
+
+
 
 
     /* Method to  READ all the accpi nt */
