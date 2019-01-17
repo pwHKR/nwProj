@@ -15,7 +15,7 @@
             <div class="d-flex h-100">
                 <div class="project-text w-100 my-auto text-center text-lg-right">
                     <h4 class="text-white">News</h4>
-                    <p class="mb-0 text-white-50">News on social network</p>
+                    <p class="mb-0 text-white-50"><%@ include file="/./java/newsCode.jsp" %></p>
                     <hr class="d-none d-lg-block mb-0 mr-0">
                 </div>
             </div>

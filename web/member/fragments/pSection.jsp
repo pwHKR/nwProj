@@ -17,6 +17,6 @@
 
         <!-- Project Two Row -->
 
-        <%@ include file="pArea/p2Row.jsp" %>
+        <%@ include file="pArea/newsFragment.jsp" %>
 
 </section>
