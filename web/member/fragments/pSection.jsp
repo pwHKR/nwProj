@@ -9,13 +9,13 @@
 <section id="projects" class="projects-section bg-light">
     <div class="container">
 
-        <!-- Featured Project Row -->
-        <%@ include file="pArea/fRow.jsp" %>
+        <!-- User Search Result row -->
+        <%@ include file="pArea/searchRes.jsp" %>
 
-        <!-- Project One Row -->
-        <%@ include file="pArea/p1Row.jsp" %>
+        <!-- Friend List row -->
+        <%@ include file="pArea/friendList.jsp" %>
 
-        <!-- Project Two Row -->
+        <!-- News Fragment Row -->
 
         <%@ include file="pArea/newsFragment.jsp" %>
 
