@@ -83,6 +83,13 @@
 
         <mapping class="Hibernate.Entity.Group"/>
 
+        <!-- News -->
+
+        <mapping resource ="News.hbm.xml"/>
+
+
+        <mapping class="Hibernate.Entity.News"/>
+
 
 
 

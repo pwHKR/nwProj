@@ -21,8 +21,13 @@ public class ManageNews {
     }
 
     public void post(String post) {
-        //Session session = factory.openSession();
+
+        News news = new News(post);
+
+
+
         Transaction tx = null;
+
 
 
         try {
@@ -34,7 +39,7 @@ public class ManageNews {
             //TODO: kolla att friend inte redan finns i db här
 
 
-            session.save(new News(post));
+            session.save(news);
 
 
             tx.commit();

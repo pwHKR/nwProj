@@ -88,17 +88,19 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Web.MVC.Controller.Servlet.ServletLoginTest</servlet-name>
-        <servlet-class>Web.MVC.Controller.Servlet.ServletLoginTest</servlet-class>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletAdminNews</servlet-name>
+        <servlet-class>Web.MVC.Controller.Servlet.ServletAdminNews</servlet-class>
 
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Web.MVC.Controller.Servlet.ServletLoginTest</servlet-name>
-        <url-pattern>/Web.MVC.Controller.Servlet.ServletLoginTest</url-pattern>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletAdminNews</servlet-name>
+        <url-pattern>/admin/Web.MVC.Controller.Servlet.ServletAdminNews</url-pattern>
 
 
     </servlet-mapping>
+
+
 
 
 

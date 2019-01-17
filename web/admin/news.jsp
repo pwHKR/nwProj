@@ -12,16 +12,15 @@
 </head>
 <body>
 
-<textarea name="paragraph_text" cols="50" rows="10"></textarea>
-
-<form action="Web.MVC.Controller.Servlet.ServletLogin" method="GET" >
-    <h2>Login</h2><br>
-    <b> UserName: </b>  <input name="userName" type="text" minlength ="1" > <br><br>
-    <b> Password: </b> <input name="password" type="password" maxlength="10" minlength="1"> <br><br>
 
 
-    <input type="submit" value="Login" />
-</form>
+<FORM ACTION="Web.MVC.Controller.Servlet.ServletAdminNews" METHOD="POST">
+    Post news to the Social Network text:
+    <BR>
+    <TEXTAREA NAME="newsPost" cols="50" ROWS="10"></TEXTAREA>
+    <BR>
+    <INPUT TYPE="SUBMIT" VALUE="Submit">
 
+</FORM>>
 </body>
 </html>
