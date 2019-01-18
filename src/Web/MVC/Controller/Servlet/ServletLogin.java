@@ -69,23 +69,21 @@ public class ServletLogin extends HttpServlet {
 
             ManageAccount manageAccount = new ManageAccount();
 
-            try{
+
 
                if(manageAccount.isBanned(userName)){
 
-                 //  response.sendRedirect("index.jsp")
-                   //
-                   // ;
+                 response.sendRedirect("banned.jsp");
 
                    System.out.println("Banned");
 
                    //TODO: Code Here for redirecting banned users
                }
 
+                     else{
 
-            }catch(Exception e){
-                e.printStackTrace();
-            }
+
+
 
             //TODO: catch already auth exception
 
@@ -116,7 +114,7 @@ public class ServletLogin extends HttpServlet {
                 //rd.forward(request,response);
 
 
-            }
+            }}
 
 
         } else {
