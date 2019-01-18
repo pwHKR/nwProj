@@ -73,7 +73,13 @@ public class ServletLogin extends HttpServlet {
 
                if(manageAccount.isBanned(userName)){
 
-                   response.sendError(3);
+                 //  response.sendRedirect("index.jsp")
+                   //
+                   // ;
+
+                   System.out.println("Banned");
+
+                   //TODO: Code Here for redirecting banned users
                }
 
 

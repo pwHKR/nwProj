@@ -250,15 +250,16 @@ public class ManageAccount {
 
 
 
-        boolean  result = false;
-        Object banStatus = null;
+        boolean  output = false;
+
+
+        Object o = null;
 
 
 
 
 
 
-            String searchParameter ="%"+ userName +"%";
 
             session.getSessionFactory().openSession();
             Transaction tx = null;
@@ -269,11 +270,14 @@ public class ManageAccount {
             try {
                 tx = session.beginTransaction();
                 Query query = session.createNativeQuery("select isBan from account where username =:sp");
-                query.setParameter("sp",searchParameter);
+                query.setParameter("sp",userName);
 
                 System.out.println("Parameter value: "+query.getParameterValue("sp"));
 
-                banStatus = query.getSingleResult();
+
+              o = query.getSingleResult();
+
+                System.out.println(o.toString());
 
 
 
@@ -285,14 +289,17 @@ public class ManageAccount {
                 session.close();
             }
 
-            if(banStatus.toString().equalsIgnoreCase("1")){
 
-                result = true;
+
+
+            if(o.toString().equalsIgnoreCase("true")){
+
+                output = true;
             }
 
-            else{ result = false;}
 
-        return result;
+
+        return output;
         }
 
 
