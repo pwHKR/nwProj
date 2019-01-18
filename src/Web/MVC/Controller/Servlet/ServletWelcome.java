@@ -60,6 +60,9 @@ public class ServletWelcome extends HttpServlet {
             throws ServletException, IOException {
 
 
+
+
+
         System.out.println("welcomeServlet LOGINBEAN username: "+loginBean.getUserName());
 
 ;

@@ -7,77 +7,27 @@ import Hibernate.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class ManageAccount {
 
 
+    private Session session = null;
 
-    //private static SessionFactory factory;
-   private Session session = null;
-
-public ManageAccount(){
+    public ManageAccount() {
 
 
-    this.session = HibernateUtil.getSessionFactory().getCurrentSession();
+        this.session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-}
-
-
-
-
-
-    public static void test() {
-
-    /*
-    try {
-            factory = new AnnotationConfiguration().configure().addAnnotatedClass(Account.class).buildSessionFactory();
-        } catch (Throwable ex) {
-            System.err.println("Failed to create sessionFactory object." + ex);
-            throw new ExceptionInInitializerError(ex);
-
-        }
-
-     */
-
-
-
-
-
-
-
-
-        /* Add few account records in database */
-
-       // ME.AddAccount("peter","hej","peter@mailKing.com");
-        //ME.AddAccount("adam","hej","se@ada.com");
-
-
-
-
-
-        /* List down all the employees */
-      ;
-
-       // ME.testLogin();
-
-        /* Update employee's records */
-        //ME.updateEmployee(empID1, 5000);
-
-        /* Delete an employee from the database */
-       // ME.deleteEmployee(empID2);
-
-        /* List down new list of the employees */
-      //  ME.listAccounts();
- }
+    }
 
 
     //Method to CREATE an Account in the database */
-    public void AddAccount(Account account, Person person, Group group){
-        //Session session = factory.openSession();
-
+    public void AddAccount(Account account, Person person, Group group) {
 
 
         Transaction tx = null;
@@ -87,26 +37,20 @@ public ManageAccount(){
             tx = session.beginTransaction();
 
 
-
-            accountId =(Integer)session.save(account);
+            accountId = (Integer) session.save(account);
 
             person.setAccount_id(accountId);
             session.save(person);
             session.save(group);
 
 
-
-          //
+            //
 
             tx.commit();
 
 
-
-
-
-
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -116,7 +60,7 @@ public ManageAccount(){
 
 
     // Add access group to newly created account
-    public void AddGroup(Group group){
+    public void AddGroup(Group group) {
         //Session session = factory.openSession();
         Transaction tx = null;
         Integer accountId = null;
@@ -125,17 +69,13 @@ public ManageAccount(){
             tx = session.beginTransaction();
 
 
-
-
-
-             session.save(group);
+            session.save(group);
 
             tx.commit();
 
 
-
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -144,27 +84,86 @@ public ManageAccount(){
     }
 
 
+    // Return ArrayList of user accounts (non admin)
+    public ArrayList<Account> listUserAccount() {
+
+        ArrayList<Account> userAccounts = new ArrayList<>();
 
 
-    /* Method to  READ all the accpi nt */
+        session.getSessionFactory().openSession();
+        Transaction tx = null;
 
 
-    public void listAccounts( ){
-       session.getSessionFactory().openSession();
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createNativeQuery("select username , id, isBan from account where isAdmin = 0;");
+
+
+            List<Object[]> queryList = query.getResultList();
+            for (Object[] result : queryList) {
+
+
+                int tinyInt;
+
+
+                System.out.println("result[2] to string "+result[2].toString());
+                System.out.println("result[2] to boolean "+Boolean.getBoolean(result[2].toString()));
+                if (result[2].toString().equalsIgnoreCase("true")) {
+
+
+                    tinyInt = 1;
+
+                } else {
+                    tinyInt = 0;
+                }
+
+
+                // 3 parameter constructor with userName , id and isBan
+                Account account = new Account(result[0].toString(),
+                        Integer.valueOf(result[1].toString()),
+                        tinyInt);
+
+
+                userAccounts.add(account);
+
+
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+
+        return userAccounts;
+
+
+    }
+
+
+
+
+    /* Method to  READ all the Accounts */
+
+
+    public void listAccounts() {
+        session.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
             List accounts = session.createQuery("FROM Account ").list();
-            for (Iterator iterator = accounts.iterator(); iterator.hasNext();){
+            for (Iterator iterator = accounts.iterator(); iterator.hasNext(); ) {
                 Account account = (Account) iterator.next();
                 System.out.print("userName: " + account.getUsername());
                 System.out.print("\npassword: " + account.getPassword());
-                System.out.println("\nemail: " + account.getEmail()+"\n---------");
+                System.out.println("\nemail: " + account.getEmail() + "\n---------");
             }
             tx.commit();
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -172,7 +171,7 @@ public ManageAccount(){
     }
 
 
-    public boolean validatePassword(String userName,String password){
+    public boolean validatePassword(String userName, String password) {
         //Session session = factory.openSession();
         Transaction tx = null;
 
@@ -181,33 +180,29 @@ public ManageAccount(){
 
         try {
             tx = session.beginTransaction();
-            List accounts = session.createQuery("FROM Account WHERE username ='"+userName+"'" +
-                    "and password ='"+password+"'").list();
+            List accounts = session.createQuery("FROM Account WHERE username ='" + userName + "'" +
+                    "and password ='" + password + "'").list();
 
 
-
-            for (Iterator iterator = accounts.iterator(); iterator.hasNext();){
+            for (Iterator iterator = accounts.iterator(); iterator.hasNext(); ) {
                 Account account = (Account) iterator.next();
 
-                if(userName.equals(account.getUsername()) &&
-                        password.equals(account.getPassword()));
+                if (userName.equals(account.getUsername()) &&
+                        password.equals(account.getPassword())) ;
                 {
 
 
-
-                   isValid = true;
-
-
+                    isValid = true;
 
 
                 }
                 System.out.print("userName: " + account.getUsername());
                 System.out.print("\npassword: " + account.getPassword());
-                System.out.println("\nemail: " + account.getEmail()+"\n---------");
+                System.out.println("\nemail: " + account.getEmail() + "\n---------");
             }
             tx.commit();
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -217,26 +212,92 @@ public ManageAccount(){
 
     }
 
-    /* Method to UPDATE salary for an employee */
+    /* Method to UPDATE ban status for an account */
 
-    /*
-    public void updateEmployee(Integer EmployeeID, int salary ){
-        Session session = factory.openSession();
+
+    public void setBan(Integer id, boolean isBan) {
+
+        int tinyInt;
+
+        if (isBan) {
+
+            tinyInt = 1;
+
+        } else {
+            tinyInt = 0;
+        }
+
+
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
-            Employee employee = (Employee)session.get(Employee.class, EmployeeID);
-            employee.setSalary( salary );
-            session.update(employee);
+            Account account = (Account) session.get(Account.class, id);
+            account.setIsBan(tinyInt);
+            session.update(account);
             tx.commit();
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
         }
-    } */
+    }
+
+    // check if a user is banned
+
+    public boolean isBanned(String userName){
+
+
+
+        boolean  result = false;
+        Object banStatus = null;
+
+
+
+
+
+
+            String searchParameter ="%"+ userName +"%";
+
+            session.getSessionFactory().openSession();
+            Transaction tx = null;
+
+
+
+
+            try {
+                tx = session.beginTransaction();
+                Query query = session.createNativeQuery("select isBan from account where username =:sp");
+                query.setParameter("sp",searchParameter);
+
+                System.out.println("Parameter value: "+query.getParameterValue("sp"));
+
+                banStatus = query.getSingleResult();
+
+
+
+                tx.commit();
+            } catch (HibernateException e) {
+                if (tx!=null) tx.rollback();
+                e.printStackTrace();
+            } finally {
+                session.close();
+            }
+
+            if(banStatus.toString().equalsIgnoreCase("1")){
+
+                result = true;
+            }
+
+            else{ result = false;}
+
+        return result;
+        }
+
+
+
+
 
     /* Method to DELETE an employee from the records */
     /*
@@ -259,19 +320,5 @@ public ManageAccount(){
         */
 
 
-
-
-
-
-    private void testLogin(){
-
-        ManageAccount manageAccount = new ManageAccount();
-
-        boolean reslut;
-
-        reslut = manageAccount.validatePassword("peter","hej");
-
-        System.out.println(reslut);
-    }
-    }
+}
 

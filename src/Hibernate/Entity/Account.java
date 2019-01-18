@@ -30,6 +30,12 @@ public class Account implements Serializable {
     @Column(name ="isOnline")
     private int isOnline;
 
+    @Column(name ="isBan")
+    private int isBan;
+
+    @Column(name ="isAdmin")
+    private int isAdmin;
+
 
 
 
@@ -41,6 +47,12 @@ public class Account implements Serializable {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public Account(String username,int id, int isBan) {
+        this.username = username;
+        this.id = id;
+        this.isBan = isBan;
     }
 
     public String getUsername() {
@@ -76,11 +88,41 @@ public class Account implements Serializable {
         this.isOnline = isOnline;
     }
 
+    public int getIsBan() {
+        return isBan;
+    }
+
+    public void setIsBan(int isBan) {
+        this.isBan = isBan;
+    }
+
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", isOnline=" + isOnline +
+                ", isBan=" + isBan +
+                ", isAdmin=" + isAdmin +
+                '}';
     }
 }

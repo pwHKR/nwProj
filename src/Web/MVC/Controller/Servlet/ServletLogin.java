@@ -1,5 +1,6 @@
 package Web.MVC.Controller.Servlet;
 
+import Hibernate.Manage.ManageAccount;
 import Web.MVC.Controller.Bean.LoginBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
 
@@ -58,11 +59,27 @@ public class ServletLogin extends HttpServlet {
 
 
 
+
+
         isValidate = LoginEJB.validate(request,userName, password);
 
         System.out.println("isValidate Servlet " + isValidate);
 
         if (isValidate) {
+
+            ManageAccount manageAccount = new ManageAccount();
+
+            try{
+
+               if(manageAccount.isBanned(userName)){
+
+                   response.sendError(3);
+               }
+
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }
 
             //TODO: catch already auth exception
 

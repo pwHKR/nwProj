@@ -14,8 +14,6 @@
     </login-config>
 
 
-
-
     <!-- level 1 is ordinary member -->
     <security-role>
         <description/>
@@ -38,17 +36,11 @@
     </security-role>
 
 
-
     <!-- admin with all admin privileges -->
     <security-role>
         <description/>
         <role-name>super</role-name>
     </security-role>
-
-
-
-
-
 
 
     <!-- SERVLET -->
@@ -101,8 +93,18 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>Web.MVC.Controller.Servlet.AdminBan</servlet-name>
+        <servlet-class>Web.MVC.Controller.Servlet.ServletAdminBan</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Web.MVC.Controller.Servlet.AdminBan</servlet-name>
+        <url-pattern>/admin/Web.MVC.Controller.Servlet.ServletAdminBan</url-pattern>
 
 
+    </servlet-mapping>
 
 
     <!-- level 1 can access member -->
@@ -124,8 +126,6 @@
         <user-data-constraint>
             <transport-guarantee>NONE</transport-guarantee>
         </user-data-constraint>
-
-
 
 
     </security-constraint>
@@ -177,10 +177,6 @@
     </security-constraint>
 
     <!-- super can access all admin sites -->
-
-
-
-
 
 
 </web-app>
