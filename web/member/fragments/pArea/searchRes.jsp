@@ -15,13 +15,13 @@
             <h4>Friend search</h4>
             <p class="text-black-50 mb-0">
                 <jsp:useBean id="SearchBeanEJB" class="Web.MVC.Controller.Bean.SearchBean" />
-                <%
-                    /*out.print("search result get from  welcome servlet: "+request.getAttribute("result").toString());
-                    if(request.getAttribute("result").toString() != null){
-                    out.print(request.getAttribute("result"));}
-
-                    else{out.print("no result found on your search");}*/%></p>
+                <% %></p>
             ${result}
         </div>
+        <form action="Web.MVC.Controller.Servlet.ServletFriendButton" method="post">
+            <input type="submit" name="button1" value="Add Friend" />
+            <input type="submit" name="button2" value="Message friend" />
+            <input type="submit" name="button3" value="Remove friend" />
+        </form>
     </div>
 </div>

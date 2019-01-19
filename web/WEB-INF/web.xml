@@ -106,6 +106,19 @@
 
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletFriendButton</servlet-name>
+        <servlet-class>Web.MVC.Controller.Servlet.ServletFriendButton</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletFriendButton</servlet-name>
+        <url-pattern>/member/Web.MVC.Controller.Servlet.ServletFriendButton</url-pattern>
+
+
+    </servlet-mapping>
+
 
     <!-- level 1 can access member -->
     <security-constraint>

@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,7 +39,10 @@ public class ServletWelcome extends HttpServlet {
     SearchBean searchBean;
 
     @EJB
-    LoginBean loginBean;
+    LoginBean LoginEJB;
+
+
+
 
 
     @RolesAllowed("level_1")
@@ -60,14 +64,24 @@ public class ServletWelcome extends HttpServlet {
             throws ServletException, IOException {
 
 
+        System.out.println("isRequestedSessionIdFromCookie? "+request.isRequestedSessionIdFromCookie());
+
+        Cookie[] cookies;
+        cookies = request.getCookies();
+
+        for(Cookie c : cookies){
+
+            System.out.println("name: "+c.getName());
+
+            if(c.getName().equalsIgnoreCase("name")){
+            LoginEJB.setU_name(c.getValue());}
+
+            System.out.println("value: "+c.getValue());
+        }
 
 
 
-        System.out.println("welcomeServlet LOGINBEAN username: "+loginBean.getUserName());
 
-;
-
-        String output = "";
         String personPrint = "";
 
 
@@ -89,6 +103,8 @@ public class ServletWelcome extends HttpServlet {
                 personPrint = person.get(0).getFirstName() + " " + person.get(0).getLastName() +
                         "\nUsername: " + person.get(0).getUserNameFK();
 
+                request.setAttribute("pointerUser",person.get(0).getUserNameFK());
+
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("IndexOutOfBoundsException 1st on search");
                 personPrint = "no result found on your search";
@@ -98,7 +114,8 @@ public class ServletWelcome extends HttpServlet {
             searchBean.setSearchResult(personPrint);
 
 
-            sendMessageBean.sendMessage("searched for:  " + searchFor + " executed by "+loginBean.getUserName(), "ServletWelcome");
+
+         //   sendMessageBean.sendMessage("searched for:  " + searchFor + " executed by "+LoginEJB.getU_name(), "ServletWelcome");
             request.setAttribute("result",searchBean.getSearchResult());
         }
 

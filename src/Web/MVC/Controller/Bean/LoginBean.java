@@ -15,8 +15,7 @@ public class LoginBean {
 
     private final String userAttribute = "userName_session";
 
-    private String userNameStateFull;
-
+    private String u_name;
 
 
     private boolean isLoggedOut;
@@ -41,7 +40,6 @@ public class LoginBean {
         if (isValidate) {
 
 
-
             try {
                 httpServletRequest.getRemoteUser();
                 if (!httpServletRequest.getRemoteUser().equalsIgnoreCase(userName)) {
@@ -49,19 +47,14 @@ public class LoginBean {
 
                     httpServletRequest.login(userName, password);
 
-                    setUserName(userName);
 
-
-
-
-                httpServletRequest.setAttribute(userAttribute, userName);
+                    httpServletRequest.setAttribute(userAttribute, userName);
 
 
                     System.out.println("Log in 1 passed in code");
 
-                    }
-
-                    else{httpServletRequest.getSession().invalidate();
+                } else {
+                    httpServletRequest.getSession().invalidate();
 
                     System.out.println("In else of validate method in login bean");
 
@@ -99,7 +92,7 @@ public class LoginBean {
 
         }
 
-        System.out.println("LoginBean "+ isValidate);
+        System.out.println("LoginBean " + isValidate);
         return isValidate;
     }
 
@@ -108,21 +101,19 @@ public class LoginBean {
         boolean result;
         try {
 
-                httpServletRequest.getSession().removeAttribute(userAttribute);
+            httpServletRequest.getSession().removeAttribute(userAttribute);
 
-                System.out.println(httpServletRequest.getRemoteUser() + " logged out");
-
-
-                try {
-                    httpServletRequest.logout();
-                    //httpServletRequest.getSession(true).invalidate();
-
-                    result = true;
-                } catch (ServletException e) {
-                   result = false;
-                }
+            System.out.println(httpServletRequest.getRemoteUser() + " logged out");
 
 
+            try {
+                httpServletRequest.logout();
+                //httpServletRequest.getSession(true).invalidate();
+
+                result = true;
+            } catch (ServletException e) {
+                result = false;
+            }
 
 
         } catch (NullPointerException e) {
@@ -140,20 +131,6 @@ public class LoginBean {
     }
 
 
-    public String getUserName() {
-
-        try{
-        return userNameStateFull;}
-        catch (NullPointerException e){
-
-            return "nullBean";
-        }
-    }
-
-    public void setUserName(String userNameStateFull) {
-        this.userNameStateFull = userNameStateFull;
-    }
-
     public boolean isLoggedOut() {
         return isLoggedOut;
     }
@@ -169,5 +146,16 @@ public class LoginBean {
     public void setBanned(boolean banned) {
         isBanned = banned;
     }
+
+
+    public String getU_name() {
+        return u_name;
+    }
+
+    public void setU_name(String u_name) {
+        this.u_name = u_name;
+    }
+
+
 }
 

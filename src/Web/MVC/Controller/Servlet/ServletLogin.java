@@ -7,6 +7,7 @@ import Web.MVC.Controller.Bean.SendMessageBean;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,6 +43,9 @@ public class ServletLogin extends HttpServlet {
 
 
 
+
+
+
         boolean isValidate;
 
 
@@ -49,10 +53,12 @@ public class ServletLogin extends HttpServlet {
         String password = request.getParameter("password");
 
 
+
+
+
         // For sending message to jms queue
 
-        sendMessageBean.sendMessage(userName+ " accessed login","ServletLogin");
-
+       // sendMessageBean.sendMessage(userName+ " accessed login","ServletLogin");
 
 
 
@@ -63,11 +69,16 @@ public class ServletLogin extends HttpServlet {
 
         isValidate = LoginEJB.validate(request,userName, password);
 
+
+
+
+
         System.out.println("isValidate Servlet " + isValidate);
 
         if (isValidate) {
 
             ManageAccount manageAccount = new ManageAccount();
+
 
 
 
@@ -89,26 +100,44 @@ public class ServletLogin extends HttpServlet {
 
             request.login(userName,password);
             request.setAttribute(LoginEJB.getUserAttributeString(),userName);
-            LoginEJB.setUserName(userName);
+
+
+
 
             LoginEJB.setLoggedOut(false);
+            LoginEJB.setU_name(request.getRemoteUser());
+                   System.out.println("LoginEJB in Login userName: "+LoginEJB.getU_name());
 
 
 
 
-            sendMessageBean.sendMessage(userName+ " Logged in","ServletLogin");
 
 
 
-            response.setContentType("text/html;charset=UTF-8");
-            response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
-            response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
-            response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+
+
+           // sendMessageBean.sendMessage(userName+ " Logged in","ServletLogin");
+
+
+
+
             try (PrintWriter out = response.getWriter()) {
 
 
 
-                response.sendRedirect("member/welcome.jsp");
+                String url = "member/welcome.jsp";
+
+                //response.sendRedirect("member/welcome.jsp");
+
+                Cookie cookie = new Cookie("name",userName);
+
+                response.addCookie(cookie);
+
+
+
+                response.sendRedirect(response.encodeRedirectURL(url));
+
+               // request.getRequestDispatcher("/member/welcome.jsp").forward(request, response);
 
                 //RequestDispatcher rd=request.getRequestDispatcher("member/welcome.jsp");
                 //rd.forward(request,response);
@@ -122,7 +151,7 @@ public class ServletLogin extends HttpServlet {
             System.out.println("in else : ServletLogin");
 
 
-            sendMessageBean.sendMessage(userName + " failed to login\npassword used: " + password, "ServletLogin");
+         //   sendMessageBean.sendMessage(userName + " failed to login\npassword used: " + password, "ServletLogin");
 
 
             response.sendRedirect("index.jsp");
