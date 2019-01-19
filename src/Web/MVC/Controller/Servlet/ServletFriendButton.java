@@ -59,14 +59,16 @@ public class ServletFriendButton extends HttpServlet {
         switch(selection){
 
             case 1:
-                addFriend();
+                addFriend(request);
+                break;
 
             case 2:
-
                 messageFriend();
+                break;
 
             case 3:
                 removeFriend();
+                break;
 
 
                 }
@@ -74,9 +76,11 @@ public class ServletFriendButton extends HttpServlet {
     }
 
 
-    private void addFriend(){
+    private void addFriend(HttpServletRequest request){
 
         System.out.println("in add friend : FRIEND SERVLET");
+
+
     }
 
     private void messageFriend(){
