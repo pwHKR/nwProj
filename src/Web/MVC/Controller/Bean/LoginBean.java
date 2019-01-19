@@ -21,6 +21,8 @@ public class LoginBean {
 
     private boolean isLoggedOut;
 
+    private boolean isBanned;
+
 
     public LoginBean() {
 
@@ -158,6 +160,14 @@ public class LoginBean {
 
     public void setLoggedOut(boolean loggedOut) {
         isLoggedOut = loggedOut;
+    }
+
+    public boolean isBanned() {
+        return isBanned;
+    }
+
+    public void setBanned(boolean banned) {
+        isBanned = banned;
     }
 }
 

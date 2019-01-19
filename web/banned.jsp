@@ -12,6 +12,9 @@
 </head>
 <body>
 
+<jsp:useBean id="LoginEJB" scope="session" class="Web.MVC.Controller.Bean.LoginBean" />
+<%LoginEJB.setBanned(true);%>
+
 You have been temporarily banned from the social network
 
 </body>

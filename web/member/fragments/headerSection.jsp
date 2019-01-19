@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ include file="/././java/isValid.jsp" %>
+<%@ include file="/././java/isBanned.jsp" %>
 
 <head>
 
