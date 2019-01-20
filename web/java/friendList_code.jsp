@@ -35,6 +35,7 @@
 
         out.print(p.getFirstName() + " "+p.getLastName());
 
+        %><br /><%
     }
 
 }catch(NullPointerException e){e.printStackTrace();}

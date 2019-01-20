@@ -105,6 +105,9 @@ public class ServletWelcome extends HttpServlet {
 
                 request.setAttribute("pointerUser",person.get(0).getUserNameFK());
 
+                Cookie cookie = new Cookie("pointerUser",person.get(0).getUserNameFK());
+                response.addCookie(cookie);
+
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("IndexOutOfBoundsException 1st on search");
                 personPrint = "no result found on your search";

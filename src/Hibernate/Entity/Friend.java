@@ -22,6 +22,8 @@ public class Friend {
     @Column(name = "isOnline")
     private int isOnline;
 
+    @Column
+
 
 
     public int getId() {

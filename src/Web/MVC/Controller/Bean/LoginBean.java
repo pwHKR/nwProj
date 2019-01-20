@@ -17,6 +17,8 @@ public class LoginBean {
 
     private String u_name;
 
+    private String temp_pointerUser;
+
 
     private boolean isLoggedOut;
 
@@ -157,5 +159,12 @@ public class LoginBean {
     }
 
 
+    public String getTemp_pointerUser() {
+        return temp_pointerUser;
+    }
+
+    public void setTemp_pointerUser(String temp_pointerUser) {
+        this.temp_pointerUser = temp_pointerUser;
+    }
 }
 
