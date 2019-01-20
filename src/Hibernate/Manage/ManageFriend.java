@@ -24,30 +24,78 @@ public class ManageFriend {
 
     }
 
-    public void AddFriend(Person person, Person friend) {
-        //Session session = factory.openSession();
+    public void AddFriend(String userName_isAdding,String userName_isFriend) {
+
         Transaction tx = null;
         Integer friendID = null;
+
+        Person person= null;
+        Person friend = null;
+
+
 
         try {
             tx = session.beginTransaction();
 
 
-            Friend friend1 = new Friend(0);
+            // Get Persons from usernames
 
-            //TODO: kolla att friend inte redan finns i db här
+                // query for account that is adding
 
-            friendID = (Integer) session.save(friend1);
+            Query query = session.createNativeQuery("select Person.id,Person.firstName,Person.lastName,Person.adress," +
+                    " Person.Account_id, account.userName from account,Person where Account_id =account.id " +
+                    "and account.userName =:sp");
+            query.setParameter("sp",userName_isAdding);
 
-            Person_has_Friend linkingTable = new Person_has_Friend(person.getId(), friend.getId(), 1);
+            System.out.println("Parameter value: "+query.getParameterValue("sp"));
 
-            session.save(linkingTable);
+            List<Object[]> personQueryList = query.getResultList();
+            for(Object[] result: personQueryList) {
+
+                System.out.println("result[0] " + result[0]);
+
+                person = new Person(Integer.valueOf(result[0].toString()), result[1].toString(), result[2].toString(),
+                        result[3].toString(), Integer.valueOf(result[4].toString()), result[5].toString());
+
+            }
+
+                    // Query for Friend
 
 
-            tx.commit();
+                Query query2 = session.createNativeQuery("select Person.id,Person.firstName,Person.lastName,Person.adress," +
+                        " Person.Account_id, account.userName from account,Person where Account_id =account.id " +
+                        "and account.userName =:sp2");
+                query2.setParameter("sp2",userName_isFriend);
+
+                System.out.println("Parameter value: "+query2.getParameterValue("sp2"));
+
+                List<Object[]> personQueryList2 = query2.getResultList();
+                for(Object[] result1: personQueryList2) {
 
 
-        } catch (HibernateException e) {
+                    friend = new Person(Integer.valueOf(result1[0].toString()), result1[1].toString(), result1[2].toString(),
+                            result1[3].toString(), Integer.valueOf(result1[4].toString()), result1[5].toString());
+
+                }
+
+
+                //
+
+                Friend friend1 = new Friend(0);
+
+                //TODO: kolla att friend inte redan finns i db här
+
+                friendID = (Integer) session.save(friend1);
+
+                Person_has_Friend linkingTable = new Person_has_Friend(person.getId(), friend.getId(), 1);
+
+                session.save(linkingTable);
+
+
+                tx.commit();
+
+
+            }  catch (HibernateException e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
