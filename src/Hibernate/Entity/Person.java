@@ -29,6 +29,12 @@ public class Person {
     @Column(name = "Account_id")
     private int Account_id;
 
+    @Column(name = "phone")
+    private int phone;
+
+    @Column(name ="pres")
+    private String pres;
+
     // Instance variable not part of entity!
 
     private String userNameFK;
@@ -37,10 +43,11 @@ public class Person {
 
 
 
-    public Person(String firstName, String lastName, String adress) {
+    public Person(String firstName, String lastName, String adress,int phone,boolean isNew) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.adress = adress;
+        this.phone = phone;
     }
 
 
@@ -60,6 +67,20 @@ public class Person {
     }
 
 
+
+    public Person(String firstName, String lastName, String adress, int account_id, String userNameFK,int phone,
+                  String pres) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.adress = adress;
+        Account_id = account_id;
+        this.userNameFK = userNameFK;
+        this.phone = phone;
+        this.pres = pres;
+    }
+
+
+
     public Person(int id,String firstName, String lastName, String adress, int account_id, String userNameFK) {
         this.id = id;
         this.firstName = firstName;
@@ -68,6 +89,7 @@ public class Person {
         Account_id = account_id;
         this.userNameFK = userNameFK;
     }
+
 
 
 
@@ -121,6 +143,22 @@ public class Person {
     }
 
 
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+
+    public String getPres() {
+        return pres;
+    }
+
+    public void setPres(String pres) {
+        this.pres = pres;
+    }
 
     @Override
     public String toString() {
@@ -130,6 +168,7 @@ public class Person {
                 ", lastName='" + lastName + '\'' +
                 ", adress='" + adress + '\'' +
                 ", Account_id=" + Account_id +
+                ", phone=" + phone +
                 ", userNameFK='" + userNameFK + '\'' +
                 '}';
     }

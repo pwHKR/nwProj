@@ -16,13 +16,13 @@ public class ManagePerson {
 
     private Session session = null;
 
-    public ManagePerson(){
+    public ManagePerson() {
 
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
 
-    public ArrayList<Person> listPersons(){
+    public ArrayList<Person> listPersons() {
         session.getSessionFactory().openSession();
         Transaction tx = null;
 
@@ -31,12 +31,12 @@ public class ManagePerson {
         try {
             tx = session.beginTransaction();
             List persons = session.createQuery("FROM Person ").list();
-            for (Iterator iterator = persons.iterator(); iterator.hasNext();){
+            for (Iterator iterator = persons.iterator(); iterator.hasNext(); ) {
                 Person person = (Person) iterator.next();
                 System.out.print("first name: " + person.getFirstName());
                 System.out.print("\nlast name: : " + person.getLastName());
                 System.out.println("\nAccount_id: " +
-                        String.valueOf(person.getAccount_id()+"\n---------"));
+                        String.valueOf(person.getAccount_id() + "\n---------"));
 
                 personList.add(person);
 
@@ -45,7 +45,7 @@ public class ManagePerson {
             tx.commit();
 
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
 
@@ -55,42 +55,42 @@ public class ManagePerson {
     }
 
 
-    public ArrayList<Person> searchBy_userName(String username){
+    public ArrayList<Person> searchBy_userName(String username) {
 
 
         ArrayList<Person> personArrayList = new ArrayList<>();
 
-        String searchParameter ="%"+ username +"%";
+        String searchParameter = "%" + username + "%";
 
         session.getSessionFactory().openSession();
         Transaction tx = null;
 
 
-
-
         try {
             tx = session.beginTransaction();
             Query query = session.createNativeQuery("select Person.id,Person.firstName,Person.lastName,Person.adress," +
-                    " Person.Account_id, account.userName from account,Person where Account_id =account.id and account.userName" +
+                    " Person.Account_id, account.userName, Person.phone, Person.pres from account,Person where Account_id =account.id and account.userName" +
                     " LIKE :sp");
-            query.setParameter("sp",searchParameter);
+            query.setParameter("sp", searchParameter);
 
-            System.out.println("Parameter value: "+query.getParameterValue("sp"));
+            System.out.println("Parameter value: " + query.getParameterValue("sp"));
 
             List<Object[]> personQueryList = query.getResultList();
-           for(Object[] result: personQueryList){
+            for (Object[] result : personQueryList) {
 
-               Person person = new Person(result[1].toString(),result[2].toString(),
-                       result[3].toString(),Integer.valueOf(result[4].toString()),result[5].toString());
+                Person person = new Person(result[1].toString(), result[2].toString(),
+                        result[3].toString(), Integer.valueOf(result[4].toString()), result[5].toString(),
+                        Integer.valueOf(result[6].toString()), result[7].toString());
 
-               personArrayList.add(person);
+                personArrayList.add(person);
 
-               System.out.println(person.getFirstName());
 
-           }
+                System.out.println(person.getFirstName());
+
+            }
             tx.commit();
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -99,8 +99,7 @@ public class ManagePerson {
     }
 
 
-
-    public Person getPerson(String userName){
+    public Person getPerson(String userName) {
 
         System.out.println("username in mp " + userName);
 
@@ -108,11 +107,8 @@ public class ManagePerson {
         ArrayList<Person> personArrayList = new ArrayList<>();
 
 
-
         session.getSessionFactory().openSession();
         Transaction tx = null;
-
-
 
 
         try {
@@ -120,17 +116,17 @@ public class ManagePerson {
             Query query = session.createNativeQuery("select Person.id,Person.firstName,Person.lastName,Person.adress," +
                     " Person.Account_id, Account.userName from Account,Person where Account_id =Account.id " +
                     "and Account.userName =:sp");
-            query.setParameter("sp",userName);
+            query.setParameter("sp", userName);
 
-            System.out.println("Parameter value: "+query.getParameterValue("sp"));
+            System.out.println("Parameter value: " + query.getParameterValue("sp"));
 
             List<Object[]> personQueryList = query.getResultList();
-            for(Object[] result: personQueryList){
+            for (Object[] result : personQueryList) {
 
                 System.out.println("result[0] " + result[0]);
 
-                Person person = new Person(Integer.valueOf(result[0].toString()),result[1].toString(),result[2].toString(),
-                        result[3].toString(),Integer.valueOf(result[4].toString()),result[5].toString());
+                Person person = new Person(Integer.valueOf(result[0].toString()), result[1].toString(), result[2].toString(),
+                        result[3].toString(), Integer.valueOf(result[4].toString()), result[5].toString());
 
                 personArrayList.add(person);
 
@@ -138,7 +134,7 @@ public class ManagePerson {
             }
             tx.commit();
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -148,33 +144,31 @@ public class ManagePerson {
     }
 
 
-    public Person getPerson_ID(int id){
+    public Person getPerson_ID(int id) {
 
 
         ArrayList<Person> personArrayList = new ArrayList<>();
 
-        int searchParameter =id;
+        int searchParameter = id;
 
         session.getSessionFactory().openSession();
         Transaction tx = null;
 
 
-
-
         try {
             tx = session.beginTransaction();
             Query query = session.createNativeQuery("select Person.id,Person.firstName,Person.lastName,Person.adress," +
-                    " Person.Account_id, Account.userName from Account,Person where Account_id =Account.id " +
+                    " Person.Account_id, account.userName from account,Person where Account_id =account.id " +
                     "and Person.id = :sp");
-            query.setParameter("sp",searchParameter);
+            query.setParameter("sp", searchParameter);
 
-            System.out.println("Parameter value: "+query.getParameterValue("sp"));
+            System.out.println("Parameter value: " + query.getParameterValue("sp"));
 
             List<Object[]> personQueryList = query.getResultList();
-            for(Object[] result: personQueryList){
+            for (Object[] result : personQueryList) {
 
-                Person person = new Person(result[1].toString(),result[2].toString(),
-                        result[3].toString(),Integer.valueOf(result[4].toString()),result[5].toString());
+                Person person = new Person(result[1].toString(), result[2].toString(),
+                        result[3].toString(), Integer.valueOf(result[4].toString()), result[5].toString());
 
                 personArrayList.add(person);
 
@@ -183,7 +177,7 @@ public class ManagePerson {
             }
             tx.commit();
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -192,14 +186,13 @@ public class ManagePerson {
     }
 
 
-
-   public ArrayList<Person>getPerson(ArrayList<Person_has_Friend> psf){
+    public ArrayList<Person> getPerson(ArrayList<Person_has_Friend> psf) {
 
 
         ArrayList<Person> personArrayList = new ArrayList<>();
 
 
-        for (Person_has_Friend p: psf){
+        for (Person_has_Friend p : psf) {
 
 
             Person friend = getPerson_ID(p.getFriend_id());
@@ -209,25 +202,66 @@ public class ManagePerson {
         }
 
 
-
-
-
-
-
         return personArrayList;
     }
 
+    public void setPresentation(String username, String presentation) {
+
+
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+
+
+            Query query = session.createNativeQuery("update Person, account SET Person.pres =:press" +
+                    " where Person.Account_id  = account.id " +
+                    "and account.username =:uname");
+            query.setParameter("press", presentation);
+            query.setParameter("uname", username);
+            int result = query.executeUpdate();
+
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
 
 
 
+    }
+
+    public String getPresentation(String username) {
+
+        String press = "";
+
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+
+
+            Query query = session.createNativeQuery("SELECT Person.pres from Person, account" +
+                    " where Person.Account_id  = account.id and account.username =:uname");;
+            query.setParameter("uname", username);
+
+
+            press = query.getSingleResult().toString();
+
+            System.out.println("pressentation in db: "+press);
+            tx.commit();
+
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
 
 
 
-
-
-
-
-
-
-    //
+        return press;
+    }
 }

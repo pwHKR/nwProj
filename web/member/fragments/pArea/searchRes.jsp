@@ -20,7 +20,9 @@
         </div>
         <form action="Web.MVC.Controller.Servlet.ServletFriendButton" method="post">
             <input type="submit" name="button1" value="Add Friend" />
+            <br />
             <input type="submit" name="button2" value="Message friend" />
+            <br />
             <input type="submit" name="button3" value="Remove friend" />
         </form>
     </div>

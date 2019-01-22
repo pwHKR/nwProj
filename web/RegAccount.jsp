@@ -37,9 +37,15 @@
             <td>Mail</td>
             <td><input type="text" name="email" /></td>
         </tr>
+
+        <td>Address</td>
+        <td><input type="text" name="address" /></td>
+        </tr>
         <tr>
-            <td>Contact No</td>
-            <td><input type="text" name="contact" /></td>
+
+        <tr>
+            <td>Phone Number</td>
+            <td><input type="text" name="phoneNum" /></td>
         </tr></table>
     <input type="submit" value="Submit" /></form>
 </body>

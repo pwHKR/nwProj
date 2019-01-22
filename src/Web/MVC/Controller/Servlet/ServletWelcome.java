@@ -2,6 +2,7 @@ package Web.MVC.Controller.Servlet;
 
 
 import Hibernate.Entity.Person;
+import Hibernate.Manage.ManagePerson;
 import Web.MVC.Controller.Bean.LoginBean;
 import Web.MVC.Controller.Bean.SearchBean;
 import Web.MVC.Controller.Bean.SendMessageBean;
@@ -65,6 +66,7 @@ public class ServletWelcome extends HttpServlet {
 
 
 
+
         //System.out.println("isRequestedSessionIdFromCookie? "+request.isRequestedSessionIdFromCookie());
 
         Cookie[] cookies;
@@ -80,6 +82,11 @@ public class ServletWelcome extends HttpServlet {
            // System.out.println("value: "+c.getValue());
         }
 
+
+
+        ManagePerson managePerson = new ManagePerson();
+
+        request.setAttribute("myPress",managePerson.getPresentation(LoginEJB.getU_name()));
 
 
 
@@ -106,6 +113,9 @@ public class ServletWelcome extends HttpServlet {
 
                 request.setAttribute("pointerUser",person.get(0).getUserNameFK());
 
+                request.setAttribute("pointerUser_address",  person.get(0).getAdress());
+                request.setAttribute("pointerUser_phone",  person.get(0).getPhone());
+                request.setAttribute("pointerUser_press",  person.get(0).getPres());
                 Cookie cookie = new Cookie("pointerUser",person.get(0).getUserNameFK());
                 response.addCookie(cookie);
 
@@ -114,6 +124,7 @@ public class ServletWelcome extends HttpServlet {
                 personPrint = "no result found on your search";
 
             }
+
 
             searchBean.setSearchResult(personPrint);
 

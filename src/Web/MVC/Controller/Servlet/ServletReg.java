@@ -55,6 +55,8 @@ public class ServletReg extends HttpServlet {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
+        String phone = request.getParameter("phoneNum");
+        String address = request.getParameter("address");
 
 
 
@@ -77,7 +79,7 @@ public class ServletReg extends HttpServlet {
                 String normalRole = "normalUser";
 
             Account account = new Account(userName,password,email);
-            Person person = new Person(firstName,lastName,"na");
+            Person person = new Person(firstName,lastName,address,Integer.valueOf(phone),true);
             Group group = new Group("normalUser",userName.toString());
 
 

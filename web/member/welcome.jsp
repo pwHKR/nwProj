@@ -30,7 +30,7 @@
 
 
 <!-- Contact Section -->
-<%@ include file="fragments/contactSection.jsp" %>
+<%@ include file="fragments/pointer_userInfo.jsp" %>
 
 
 <!-- Footer -->
