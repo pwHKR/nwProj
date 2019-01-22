@@ -120,6 +120,19 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletPresentation</servlet-name>
+        <servlet-class>Web.MVC.Controller.Servlet.ServletPresentation</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletPresentation</servlet-name>
+        <url-pattern>/member/Web.MVC.Controller.Servlet.ServletPresentation</url-pattern>
+
+
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Web.MVC.Controller.Servlet.ServletForgotPassword</servlet-name>
         <servlet-class>Web.MVC.Controller.Servlet.ServletForgotPassword</servlet-class>
 
