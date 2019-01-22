@@ -45,8 +45,6 @@ public class ServletLogin extends HttpServlet {
 
 
 
-
-
         boolean isValidate;
 
 
@@ -107,7 +105,7 @@ public class ServletLogin extends HttpServlet {
 
             LoginEJB.setLoggedOut(false);
             LoginEJB.setU_name(request.getRemoteUser());
-                   System.out.println("LoginEJB in Login userName: "+LoginEJB.getU_name());
+                  // System.out.println("LoginEJB in Login userName: "+LoginEJB.getU_name());
 
 
 
@@ -149,7 +147,7 @@ public class ServletLogin extends HttpServlet {
 
         } else {
 
-            System.out.println("in else : ServletLogin");
+          //  System.out.println("in else : ServletLogin");
 
 
          //   sendMessageBean.sendMessage(userName + " failed to login\npassword used: " + password, "ServletLogin");

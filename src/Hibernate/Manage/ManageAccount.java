@@ -106,8 +106,8 @@ public class ManageAccount {
                 int tinyInt;
 
 
-                System.out.println("result[2] to string "+result[2].toString());
-                System.out.println("result[2] to boolean "+Boolean.getBoolean(result[2].toString()));
+                System.out.println("result[2] to string " + result[2].toString());
+                System.out.println("result[2] to boolean " + Boolean.getBoolean(result[2].toString()));
                 if (result[2].toString().equalsIgnoreCase("true")) {
 
 
@@ -246,85 +246,86 @@ public class ManageAccount {
 
     // check if a user is banned
 
-    public boolean isBanned(String userName){
+    public boolean isBanned(String userName) {
 
 
-
-        boolean  output = false;
+        boolean output = false;
 
 
         Object o = null;
 
 
-
-
-
-
-
-            session.getSessionFactory().openSession();
-            Transaction tx = null;
-
-
-
-
-            try {
-                tx = session.beginTransaction();
-                Query query = session.createNativeQuery("select isBan from account where username =:sp");
-                query.setParameter("sp",userName);
-
-                System.out.println("Parameter value: "+query.getParameterValue("sp"));
-
-
-              o = query.getSingleResult();
-
-                System.out.println(o.toString());
-
-
-
-                tx.commit();
-            } catch (HibernateException e) {
-                if (tx!=null) tx.rollback();
-                e.printStackTrace();
-            } finally {
-                session.close();
-            }
-
-
-
-
-            if(o.toString().equalsIgnoreCase("true")){
-
-                output = true;
-            }
-
-
-
-        return output;
-        }
-
-
-
-
-
-    /* Method to DELETE an employee from the records */
-    /*
-    public void deleteEmployee(Integer EmployeeID){
-        Session session = factory.openSession();
+        session.getSessionFactory().openSession();
         Transaction tx = null;
+
 
         try {
             tx = session.beginTransaction();
-            Employee employee = (Employee)session.get(Employee.class, EmployeeID);
-            session.delete(employee);
+            Query query = session.createNativeQuery("select isBan from account where username =:sp");
+            query.setParameter("sp", userName);
+
+            System.out.println("Parameter value: " + query.getParameterValue("sp"));
+
+
+            o = query.getSingleResult();
+
+            System.out.println(o.toString());
+
+
             tx.commit();
         } catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
         }
 
-        */
+
+        if (o.toString().equalsIgnoreCase("true")) {
+
+            output = true;
+        }
+
+
+        return output;
+    }
+
+
+    public String getPassword(String email){
+
+        Transaction tx = null;
+        String password = "null";
+
+        try {
+            tx = session.beginTransaction();
+
+
+
+            Query query = session.createNativeQuery("select password from account where email =:sp");
+            query.setParameter("sp", email);
+
+
+
+
+                password = query.getSingleResult().toString();
+
+
+
+                tx.commit();
+
+        }
+
+        catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+
+        System.out.println("password in db: "+ password);
+        return password;
+    }
 
 
 }

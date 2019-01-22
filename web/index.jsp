@@ -27,6 +27,8 @@
 
 
 <a href="<%="http://localhost:8080/nwProj_war_exploded/RegAccount.jsp"%>">Register Account</a>
+<br />
+<a href="<%="http://localhost:8080/nwProj_war_exploded/forgotPassword.jsp"%>">Forgot Password?</a>
 </body>
 
 </html>

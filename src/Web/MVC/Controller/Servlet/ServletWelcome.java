@@ -64,7 +64,8 @@ public class ServletWelcome extends HttpServlet {
             throws ServletException, IOException {
 
 
-        System.out.println("isRequestedSessionIdFromCookie? "+request.isRequestedSessionIdFromCookie());
+
+        //System.out.println("isRequestedSessionIdFromCookie? "+request.isRequestedSessionIdFromCookie());
 
         Cookie[] cookies;
         cookies = request.getCookies();

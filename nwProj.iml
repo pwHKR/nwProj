@@ -55,5 +55,6 @@
     <orderEntry type="library" name="org.apache.commons:commons-collections4:4.0" level="project" />
     <orderEntry type="library" name="Hibernate 5.3.7-5.3.7" level="project" />
     <orderEntry type="library" name="JavaeeSecurity-1.0" level="project" />
+    <orderEntry type="library" name="java-mail-1.4.4" level="project" />
   </component>
 </module>

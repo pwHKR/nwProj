@@ -119,6 +119,19 @@
 
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletForgotPassword</servlet-name>
+        <servlet-class>Web.MVC.Controller.Servlet.ServletForgotPassword</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Web.MVC.Controller.Servlet.ServletForgotPassword</servlet-name>
+        <url-pattern>/Web.MVC.Controller.Servlet.ServletForgotPassword</url-pattern>
+
+
+    </servlet-mapping>
+
 
     <!-- level 1 can access member -->
     <security-constraint>
