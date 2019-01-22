@@ -48,12 +48,12 @@ public class ManageFriend {
                     "and account.userName =:sp");
             query.setParameter("sp", userName_isAdding);
 
-            System.out.println("Parameter value: " + query.getParameterValue("sp"));
+           // System.out.println("Parameter value: " + query.getParameterValue("sp"));
 
             List<Object[]> personQueryList = query.getResultList();
             for (Object[] result : personQueryList) {
 
-                System.out.println("result[0] " + result[0]);
+              //  System.out.println("result[0] " + result[0]);
 
                 person = new Person(Integer.valueOf(result[0].toString()), result[1].toString(), result[2].toString(),
                         result[3].toString(), Integer.valueOf(result[4].toString()), result[5].toString());
@@ -68,7 +68,7 @@ public class ManageFriend {
                     "and account.userName =:sp2");
             query2.setParameter("sp2", userName_isFriend);
 
-            System.out.println("Parameter value: " + query2.getParameterValue("sp2"));
+            //System.out.println("Parameter value: " + query2.getParameterValue("sp2"));
 
             List<Object[]> personQueryList2 = query2.getResultList();
             for (Object[] result1 : personQueryList2) {
@@ -92,15 +92,21 @@ public class ManageFriend {
             query3.setParameter("p_id", person.getId());
             query3.setParameter("f_id", friend.getId());
 
-            System.out.println("Parameter value p_id: " + query3.getParameterValue("p_id"));
-            System.out.println("Parameter value f_id: " + query3.getParameterValue("f_id"));
+            //System.out.println("Parameter value p_id: " + query3.getParameterValue("p_id"));
+            //System.out.println("Parameter value f_id: " + query3.getParameterValue("f_id"));
             List<Object[]> duplicateList = query3.getResultList();
             for (Object[] result2 : personQueryList2) {
 
 
                 try {
-                    System.out.println("Result2[0] " + result2[0].toString());
-                    System.out.println("Result2[1] " + result2[1].toString());
+                        //System.out.println("Result2[0] " + result2[0].toString());
+                        //System.out.println("Result2[1] " + result2[1].toString());
+
+                    // Result2 toString() results below are ignored. The below statements works like a duplicate check-
+                    //- for the database
+                    // TODO: For future implementations , this could be solved in a nicer way
+                    result2[0].toString();
+                    result2[1].toString();
                     isDuplicate = true;
                 } catch (NullPointerException e) {
 
@@ -148,7 +154,7 @@ public class ManageFriend {
             tx = session.beginTransaction();
 
 
-            // Get Persons from usernames
+            // Get Persons from account username
 
             // query for account that is removing the friend
 
@@ -157,7 +163,7 @@ public class ManageFriend {
                     "and account.userName =:sp");
             query.setParameter("sp", userName_isRemoving);
 
-            System.out.println("Parameter value: " + query.getParameterValue("sp"));
+            System.out.println("Parameter value(Username of the account who wants to remove a friend) : " + query.getParameterValue("sp"));
 
             List<Object[]> personQueryList = query.getResultList();
             for (Object[] result : personQueryList) {
@@ -177,7 +183,7 @@ public class ManageFriend {
                     "and account.userName =:sp2");
             query2.setParameter("sp2", userName_removeFriend);
 
-            System.out.println("Parameter value: " + query2.getParameterValue("sp2"));
+            System.out.println("Parameter value(Username of the friend who is to be removed ): " + query2.getParameterValue("sp2"));
 
             List<Object[]> personQueryList2 = query2.getResultList();
             for (Object[] result1 : personQueryList2) {
@@ -192,13 +198,22 @@ public class ManageFriend {
 
 
 
+                System.out.println("Person id: "+ person.getId());
+            System.out.println("Friend id: "+ friend.getId());
 
 
             Person_has_Friend linkingTable = new Person_has_Friend(person.getId(), friend.getId(), 1);
 
-            linkingTable = (Person_has_Friend) session.merge(linkingTable);
+            //linkingTable = (Person_has_Friend) session.merge(linkingTable);
             //session.remove(linkingTable);
-            session.delete(linkingTable);
+
+           Query query3 =  session.createSQLQuery("Delete from Person_has_Friend where Person_has_Friend.person_id=:p_id and Person_has_Friend.friend_id=:f_id");
+
+           query3.setParameter("p_id",person.getId());
+           query3.setParameter("f_id",friend.getId());
+
+           query3.executeUpdate();
+            // session.delete(linkingTable);
 
 
             tx.commit();
@@ -214,7 +229,7 @@ public class ManageFriend {
     }
 
 
-    public ArrayList<Person> tempGetFriendList(String userName) {
+    public ArrayList<Person> getFriendList(String userName) {
 
 
         ArrayList<Person> personArrayList = new ArrayList<>();
@@ -234,12 +249,12 @@ public class ManageFriend {
                     "and account.userName =:sp");
             query.setParameter("sp", userName);
 
-            System.out.println("Parameter value in query1: " + query.getParameterValue("sp"));
+           // System.out.println("Parameter value in query1: " + query.getParameterValue("sp"));
 
             List<Object[]> personQueryList = query.getResultList();
             for (Object[] result : personQueryList) {
 
-                System.out.println("result[0] " + result[0]);
+               // System.out.println("result[0] " + result[0]);
 
                 userPerson = new Person(Integer.valueOf(result[0].toString()), result[1].toString(), result[2].toString(),
                         result[3].toString(), Integer.valueOf(result[4].toString()), result[5].toString());
@@ -257,15 +272,16 @@ public class ManageFriend {
                     " Person_has_Friend.isPending from Person_has_Friend where Person_has_Friend.person_id =:sp");
             query2.setParameter("sp", userPerson.getId());
 
-            System.out.println("Parameter value in query2: " + query2.getParameterValue("sp"));
+           // System.out.println("Parameter value in query2: " + query2.getParameterValue("sp"));
 
 
             List<Object[]> queryList = query2.getResultList();
             for (Object[] result2 : queryList) {
 
+                /*
                 System.out.println("result in query 2 for psf list: " + "result[0] : " + result2[0].toString() +
                         "\nresult[1] : " + result2[1].toString() +
-                        "\nresult[2] : " + result2[2].toString());
+                        "\nresult[2] : " + result2[2].toString()); */
 
                 Person_has_Friend psf = new Person_has_Friend(Integer.valueOf(result2[0].toString()),
                         Integer.valueOf(result2[1].toString()),
@@ -291,7 +307,7 @@ public class ManageFriend {
                         "and Person.id = :sp");
                 query3.setParameter("sp", searchParameter);
 
-                System.out.println("Parameter value query 3: " + query3.getParameterValue("sp"));
+               // System.out.println("Parameter value query 3: " + query3.getParameterValue("sp"));
 
                 List<Object[]> personQueryList2 = query3.getResultList();
                 for (Object[] result3 : personQueryList2) {
@@ -301,7 +317,7 @@ public class ManageFriend {
 
                     personArrayList.add(friend);
 
-                    System.out.println("sout in db method of friend first name: " + friend.getFirstName());
+                   // System.out.println("sout in db method of friend first name: " + friend.getFirstName());
 
                 }
 
@@ -323,52 +339,6 @@ public class ManageFriend {
         return personArrayList;
     }
 
-
-    public ArrayList<Person_has_Friend> getFriendList(Person person) {
-
-        System.out.println("person id in MF " + person.getId());
-
-
-        ArrayList<Person_has_Friend> friendArrayList = new ArrayList<>();
-
-
-        session.getSessionFactory().openSession();
-        Transaction tx = null;
-
-
-        try {
-            tx = session.beginTransaction();
-            Query query = session.createNativeQuery("Select  Person_has_Friend.person_id, Person_has_Friend.friend_id," +
-                    " Person_has_Friend.isPending from Person_has_Friend where Person_has_Friend.person_id =:sp");
-            query.setParameter("sp", person.getId());
-
-            System.out.println("Parameter value in psf: " + query.getParameterValue("sp"));
-
-
-            List<Object[]> queryList = query.getResultList();
-            for (Object[] result : queryList) {
-
-                System.out.println("result in mp for psf: " + "result[0] : " + result[0].toString() +
-                        "\nresult[1] : " + result[1].toString() +
-                        "\nresult[2] : " + result[2].toString());
-
-                Person_has_Friend psf = new Person_has_Friend(Integer.valueOf(result[0].toString()),
-                        Integer.valueOf(result[1].toString()),
-                        Integer.valueOf(result[2].toString()));
-
-                friendArrayList.add(psf);
-
-
-            }
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return friendArrayList;
-    }
 
 
 }

@@ -2,6 +2,7 @@ package Web.MVC.Controller.Servlet;
 
 import Hibernate.Manage.ManageNews;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +23,7 @@ public class ServletAdminNews extends HttpServlet {
         processRequest(request, response);
     }
 
-
+    @RolesAllowed("news")
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

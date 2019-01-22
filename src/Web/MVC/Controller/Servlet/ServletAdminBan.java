@@ -2,6 +2,7 @@ package Web.MVC.Controller.Servlet;
 
 import Hibernate.Manage.ManageAccount;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +22,8 @@ public class ServletAdminBan extends HttpServlet {
         processRequest(request, response);
     }
 
+
+    @RolesAllowed("ban")
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

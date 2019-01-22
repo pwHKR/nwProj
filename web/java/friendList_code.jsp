@@ -29,7 +29,7 @@
     ManageFriend manageFriend = new ManageFriend();
     try{
     ArrayList<Person> friends;
-    friends = manageFriend.tempGetFriendList(d);
+    friends = manageFriend.getFriendList(d);
 
     for(Person p: friends){
 

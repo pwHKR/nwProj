@@ -72,7 +72,7 @@ public class ManageNews {
 
 
                maxPost  = query.getSingleResult().toString();
-                System.out.println(maxPost);
+              //  System.out.println(maxPost);
 
 
             tx.commit();

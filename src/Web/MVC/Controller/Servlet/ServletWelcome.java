@@ -71,12 +71,12 @@ public class ServletWelcome extends HttpServlet {
 
         for(Cookie c : cookies){
 
-            System.out.println("name: "+c.getName());
+            //System.out.println("name: "+c.getName());
 
             if(c.getName().equalsIgnoreCase("name")){
             LoginEJB.setU_name(c.getValue());}
 
-            System.out.println("value: "+c.getValue());
+           // System.out.println("value: "+c.getValue());
         }
 
 
@@ -109,7 +109,7 @@ public class ServletWelcome extends HttpServlet {
                 response.addCookie(cookie);
 
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("IndexOutOfBoundsException 1st on search");
+               // System.out.println("IndexOutOfBoundsException 1st on search");
                 personPrint = "no result found on your search";
 
             }

@@ -86,7 +86,6 @@ public class ServletReg extends HttpServlet {
             manageAccount.AddAccount(account,person, group);
 
 
-           // registerBean.registerAccount(account,person,group);
 
             sendMessageBean.sendMessage(userName+ " Registered","ServletReg");
 
