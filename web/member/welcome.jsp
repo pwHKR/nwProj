@@ -17,7 +17,7 @@
 
 <!-- About Section -->
 
-<%@ include file="fragments/aboutSection.jsp" %>
+<%@ include file="fragments/presentationSection.jsp" %>
 
 
 

@@ -12,12 +12,12 @@
     </div>
     <div class="col-xl-4 col-lg-5">
         <div class="featured-text text-center text-lg-left">
-            <h4>Friend search</h4>
+            <h4>Friend Pointer</h4>
             <p class="text-black-50 mb-0">
                 <jsp:useBean id="SearchBeanEJB" class="Web.MVC.Controller.Bean.SearchBean" />
-                <% %></p>
-            ${result}
+            </p>
         </div>
+        ${result}
         <form action="Web.MVC.Controller.Servlet.ServletFriendButton" method="post">
             <input type="submit" name="button1" value="Add Friend" />
             <br />
