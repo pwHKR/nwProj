@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <section id="about" class="about-section text-center">
     <div class="container">
+
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <h2 class="text-white mb-4">Presentation</h2>
@@ -19,5 +20,6 @@
 
         </div>
         <img src="img/frontIMG.png" class="img-fluid" alt="">
+
     </div>
 </section>

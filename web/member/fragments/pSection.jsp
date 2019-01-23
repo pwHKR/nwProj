@@ -7,7 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <section id="projects" class="projects-section bg-light">
-    <div class="container">
+
+    <style>
+        /* Define custom CSS by the user here */
+        .bg-light{background-color: gainsboro !important;
+
+        }
+    </style>
+
+
 
         <!-- User Search Result row -->
         <%@ include file="pArea/searchRes.jsp" %>
@@ -18,5 +26,8 @@
         <!-- News Fragment Row -->
 
         <%@ include file="pArea/newsFragment.jsp" %>
+
+
+
 
 </section>

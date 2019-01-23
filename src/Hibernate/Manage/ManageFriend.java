@@ -48,7 +48,7 @@ public class ManageFriend {
                     "and account.userName =:sp");
             query.setParameter("sp", userName_isAdding);
 
-           // System.out.println("Parameter value: " + query.getParameterValue("sp"));
+            System.out.println("Parameter value: " + query.getParameterValue("sp"));
 
             List<Object[]> personQueryList = query.getResultList();
             for (Object[] result : personQueryList) {
@@ -68,7 +68,7 @@ public class ManageFriend {
                     "and account.userName =:sp2");
             query2.setParameter("sp2", userName_isFriend);
 
-            //System.out.println("Parameter value: " + query2.getParameterValue("sp2"));
+            System.out.println("Parameter value: " + query2.getParameterValue("sp2"));
 
             List<Object[]> personQueryList2 = query2.getResultList();
             for (Object[] result1 : personQueryList2) {
@@ -92,15 +92,15 @@ public class ManageFriend {
             query3.setParameter("p_id", person.getId());
             query3.setParameter("f_id", friend.getId());
 
-            //System.out.println("Parameter value p_id: " + query3.getParameterValue("p_id"));
-            //System.out.println("Parameter value f_id: " + query3.getParameterValue("f_id"));
+            System.out.println("Parameter value p_id: " + query3.getParameterValue("p_id"));
+            System.out.println("Parameter value f_id: " + query3.getParameterValue("f_id"));
             List<Object[]> duplicateList = query3.getResultList();
             for (Object[] result2 : personQueryList2) {
 
 
                 try {
-                        //System.out.println("Result2[0] " + result2[0].toString());
-                        //System.out.println("Result2[1] " + result2[1].toString());
+                        System.out.println("Result2[0] " + result2[0].toString());
+                        System.out.println("Result2[1] " + result2[1].toString());
 
                     // Result2 toString() results below are ignored. The below statements works like a duplicate check-
                     //- for the database
@@ -120,7 +120,9 @@ public class ManageFriend {
 
             //
 
-            if (!isDuplicate) {
+            System.out.println("idDuplicate: "+ isDuplicate);
+
+            if (isDuplicate) {
                 friendID = (Integer) session.save(friend1);
 
                 Person_has_Friend linkingTable = new Person_has_Friend(person.getId(), friend.getId(), 1);

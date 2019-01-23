@@ -108,8 +108,8 @@ public class ServletWelcome extends HttpServlet {
                 person = searchBean.searchForPersons(searchFor);
 
                 //TODO: insert loop and use String builder to get all the persons into one String
-                personPrint = person.get(0).getFirstName() + " " + person.get(0).getLastName() +
-                        "\nUsername: " + person.get(0).getUserNameFK();
+                personPrint = person.get(0).getFirstName() + " " + person.get(0).getLastName();
+
 
                 request.setAttribute("pointerUser",person.get(0).getUserNameFK());
 

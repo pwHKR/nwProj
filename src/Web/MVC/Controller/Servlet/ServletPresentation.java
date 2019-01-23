@@ -66,11 +66,7 @@ public class ServletPresentation extends HttpServlet {
                 LoginEJB.setU_name(c.getValue());}
 
 
-            if(c.getName().equalsIgnoreCase("pointerUser")){
 
-                LoginEJB.setTemp_pointerUser(c.getValue());}
-
-            System.out.println("value: "+c.getValue());
         }
     }
 }

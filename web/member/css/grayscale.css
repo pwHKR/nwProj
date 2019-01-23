@@ -178,7 +178,14 @@
 
 .projects-section {
   padding: 10rem 0;
+
+
+
+
+
+
 }
+
 
 .projects-section .featured-text {
   padding: 2rem;
@@ -276,6 +283,7 @@
 body {
   font-family: 'Nunito';
   letter-spacing: 0.0625em;
+
 }
 
 a {

@@ -8,6 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <section class="contact-section bg-black">
     <div class="container">
+        <h2 class="text-white mb-5"> ${result}</h2>
+        <br />
+       <h4 class="text-white mb-5">Username - ${pointerUser}</h4>
 
         <div class="row">
 
