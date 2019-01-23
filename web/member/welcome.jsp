@@ -15,7 +15,7 @@
 
 
 
-<!-- About Section -->
+<!-- Presentation Section -->
 
 <%@ include file="fragments/presentationSection.jsp" %>
 
@@ -25,11 +25,11 @@
 
 
 <%@ include file="fragments/pSection.jsp" %>
-<!-- Signup Section -->
+<!-- Search Section -->
 <%@ include file="fragments/searchSection.jsp" %>
 
 
-<!-- Contact Section -->
+<!-- pointer user Section -->
 <%@ include file="fragments/pointer_userInfo.jsp" %>
 
 
