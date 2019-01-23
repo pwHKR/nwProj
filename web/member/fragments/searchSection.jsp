@@ -19,13 +19,14 @@
                     <button type="submit" class="btn btn-primary mx-auto">Search</button>
                 </form>
 
+                <br />
 
                 <form action="Web.MVC.Controller.Servlet.ServletFriendButton" method="post">
-                    <input type="submit" name="button1"value="Add Friend" />
+                    <input type="submit" class="btn btn-primary mx-auto" name="button1"value="Add  " />
+
+                    <input type="submit" class="btn btn-primary mx-auto" name="button2" value="MSG   " />
                     <br />
-                    <input type="submit" name="button2" value="Message friend" />
-                    <br />
-                    <input type="submit" name="button3" value="Remove friend" />
+                    <input type="submit" class="btn btn-primary mx-auto" name="button3" value="RMV   " />
                 </form>
 
 
